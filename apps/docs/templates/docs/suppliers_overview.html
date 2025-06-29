@@ -1,0 +1,76 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Gerenciando Fornecedores: Visão Geral - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Gerenciando Fornecedores - Visão Geral</h1>
+  <p class="lead">
+    O módulo de fornecedores é crucial para gerenciar os parceiros que fornecem produtos e serviços para a Forniture Store.
+  </p>
+
+  <section>
+    <h2>
+      <i class="bi bi-compass me-2"></i>Acessando as Funcionalidades de Fornecedores
+    </h2>
+    <p>
+      Você pode acessar as funcionalidades relacionadas a fornecedores de duas maneiras principais:
+    </p>
+    <ul>
+      <li>
+        <strong>Pela Barra de Navegação Superior:</strong> Clique no item "Fornecedores" na barra de navegação principal para ir diretamente para a lista de fornecedores.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_navbar_suppliers.png' %}"
+        alt="Item Fornecedores na Navbar"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>
+        <strong>Pelo Menu Lateral (Sidebar):</strong> Clique no botão de menu (<i class="bi bi-list"></i> Menu) no canto esquerdo para abrir a sidebar. Expanda a seção "Fornecedores" para ver as opções "Cadastrar Novo" e "Listar Fornecedores".
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_sidebar_suppliers.png' %}"
+        alt="Seção Fornecedores na Sidebar"
+        class="img-fluid screenshot my-2"
+      />
+    </ul>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-card-list me-2"></i>O que você pode fazer?</h2>
+    <p>Com o módulo de fornecedores, você será capaz de:</p>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <i class="bi bi-person-plus-fill me-2 text-success"></i>Cadastrar novos fornecedores, sejam eles Pessoas Físicas (autônomos, artesãos) ou Pessoas Jurídicas (empresas).
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-search me-2 text-info"></i>Consultar a lista de todos os fornecedores cadastrados, com opções de busca e filtro.
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-eye-fill me-2 text-primary"></i>Visualizar os detalhes completos de um fornecedor específico, incluindo seu endereço, dados de contato e informações bancárias.
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-pencil-fill me-2 text-warning"></i>Editar as informações de um fornecedor existente.
+      </li>
+    </ul>
+  </section>
+
+  <div class="alert alert-info mt-4" role="alert">
+    <p>
+      <i class="bi bi-lightbulb-fill me-1"></i> Manter os dados dos fornecedores organizados facilita a comunicação, negociações e o controle financeiro.
+    </p>
+    <hr />
+    <p class="mb-0">
+      Nas próximas seções, detalharemos como realizar cada uma dessas ações.
+    </p>
+  </div>
+
+  <div class="d-flex justify-content-end mt-4">
+    <a href="{% url 'docs:suppliers_create' %}" class="btn btn-primary"
+      >Próximo: Cadastrar Fornecedor <i class="bi bi-arrow-right-short"></i
+    ></a>
+  </div>
+{% endblock tutorial_page_content %}

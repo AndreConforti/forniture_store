@@ -1,0 +1,152 @@
+{% extends "base/base_home.html" %} 
+{% load static %} 
+
+{% block title %} Tutorial do Sistema - {{ block.super }} {% endblock %} 
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'docs/css/style_docs_base.css' %}"/>
+{% endblock %} 
+
+{% block content %}
+  <div class="container-fluid mt-3">
+    <div class="row">
+      <!-- Tutorial Sidebar Navigation -->
+      <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse p-3" id="tutorialSidebar">
+        <div class="position-sticky">
+          <h5 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-3 text-muted">
+            <span>Menu do Tutorial</span>
+          </h5>
+          <ul class="nav flex-column">
+            <li class="nav-item">
+              <a class="nav-link {% if current_page == 'index' %}active{% endif %}" href="{% url 'docs:index' %}">
+                <i class="bi bi-house-door me-2"></i> Início do Tutorial
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if current_page == 'authentication' %}active{% endif %}"href="{% url 'docs:authentication' %}">
+                <i class="bi bi-box-arrow-in-right me-2"></i> Acesso e Personalização
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link {% if current_page == 'password_recovery' %}active{% endif %}" href="{% url 'docs:password_recovery' %}">
+                <i class="bi bi-key me-2"></i> Recuperação de Senha
+              </a>
+            </li>
+            {% comment %} Customers {% endcomment %}
+            <li class="nav-item">
+              {% with customers_pages="customers_overview customers_create customers_manage" %}
+              <a
+                class="nav-link {% if current_page in customers_pages.split %}active{% endif %}"
+                data-bs-toggle="collapse"
+                href="#customersSubmenuTutorial"
+                role="button"
+                aria-expanded="{% if current_page in customers_pages.split %}true{% else %}false{% endif %}"
+                aria-controls="customersSubmenuTutorial"
+              >
+                <i class="bi bi-people me-2"></i> Gerenciando Clientes
+              </a>
+              <ul
+                class="collapse list-unstyled ms-3 {% if current_page in customers_pages.split %}show{% endif %}"
+                id="customersSubmenuTutorial"
+              >
+                <li>
+                  <a class="nav-link {% if current_page == 'customers_overview' %}active{% endif %}" href="{% url 'docs:customers_overview' %}">
+                    Visão Geral
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link {% if current_page == 'customers_create' %}active{% endif %}" href="{% url 'docs:customers_create' %}">
+                  Cadastrar Cliente
+                </a>
+                </li>
+                <li>
+                  <a class="nav-link {% if current_page == 'customers_manage' %}active{% endif %}" href="{% url 'docs:customers_manage' %}">
+                    Consultar e Editar
+                  </a>
+                </li>
+              </ul>
+              {% endwith %}
+            </li>
+            {% comment %} <li class="nav-item">
+              {% with suppliers_pages="suppliers_overview suppliers_create suppliers_manage" %}
+                <a
+                  class="nav-link {% if current_page in suppliers_pages.split %}active{% endif %}"
+                  data-bs-toggle="collapse"
+                  href="#suppliersSubmenuTutorial"
+                  role="button"
+                  aria-expanded="{% if current_page in suppliers_pages.split %}true{% else %}false{% endif %}"
+                  aria-controls="suppliersSubmenuTutorial"
+                >
+                  <i class="bi bi-truck me-2"></i> Gerenciando Fornecedores
+                </a>
+                <ul class="collapse list-unstyled ms-3 {% if current_page in suppliers_pages.split %}show{% endif %}" id="suppliersSubmenuTutorial">
+                  <li>
+                    <a class="nav-link {% if current_page == 'suppliers_overview' %}active{% endif %}" href="{% url 'docs:suppliers_overview' %}">
+                      Visão Geral
+                    </a>
+                  </li>
+                  <li>
+                    <a class="nav-link {% if current_page == 'suppliers_create' %}active{% endif %}" href="{% url 'docs:suppliers_create' %}">
+                      Cadastrar Fornecedor
+                    </a>
+                  </li>
+                  <li>
+                    <a class="nav-link {% if current_page == 'suppliers_manage' %}active{% endif %}" href="{% url 'docs:suppliers_manage' %}">
+                      Consultar e Editar
+                    </a>
+                  </li>
+                </ul>
+              {% endwith %}
+            </li> {% endcomment %}
+            {% comment %} <li class="nav-item">
+              {% with reports_pages="reports_overview reports_customers reports_suppliers" %}
+              <a
+                class="nav-link {% if current_page in reports_pages.split %}active{% endif %}"
+                data-bs-toggle="collapse"
+                href="#reportsSubmenuTutorial"
+                role="button"
+                aria-expanded="{% if current_page in reports_pages.split %}true{% else %}false{% endif %}"
+                aria-controls="reportsSubmenuTutorial"
+              >
+                <i class="bi bi-file-earmark-bar-graph me-2"></i> Relatórios
+              </a>
+              <ul
+                class="collapse list-unstyled ms-3 {% if current_page in reports_pages.split %}show{% endif %}"
+                id="reportsSubmenuTutorial"
+              >
+                <li>
+                  <a
+                    class="nav-link {% if current_page == 'reports_overview' %}active{% endif %}"
+                    href="{% url 'docs:reports_overview' %}"
+                    >Visão Geral</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link {% if current_page == 'reports_customers' %}active{% endif %}"
+                    href="{% url 'docs:reports_customers' %}"
+                    >Relatório de Clientes</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="nav-link {% if current_page == 'reports_suppliers' %}active{% endif %}"
+                    href="{% url 'docs:reports_suppliers' %}"
+                    >Relatório de Fornecedores</a
+                  >
+                </li>
+              </ul>
+              {% endwith %}
+            </li> {% endcomment %}
+            <!-- Adicione mais seções aqui se precisar futuramente -->
+          </ul>
+        </div>
+      </nav>
+
+      <!-- Conteúdo Main Tutorial Page -->
+      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 tutorial-content">
+        {% block tutorial_page_content %} {% endblock tutorial_page_content %}
+      </main>
+    </div>
+  </div>
+{% endblock %}

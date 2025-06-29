@@ -1,0 +1,213 @@
+{% extends "base/base_home.html" %}
+{% load static %}
+
+{% block title %}Relatório de Fornecedores - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header py-3 detail-page-header">
+            <div class="d-flex align-items-center">
+                <i class="bi bi-truck fs-4 me-2"></i>
+                <h1 class="h4">{{ title|default:"Gerar Relatório de Fornecedores" }}</h1>
+            </div>
+        </div>
+        <div class="card-body p-lg-4 p-3">
+            <form method="post">
+                {% csrf_token %}
+
+                <section class="detail-section" aria-labelledby="filtros-heading">
+                    <header class="detail-section-header">
+                        <h2 id="filtros-heading" class="h5">
+                            <i class="bi bi-filter me-2"></i> Opções de Filtro
+                        </h2>
+                    </header>
+                    <div class="detail-section-body">
+                        
+                        <!-- Linha 1: Nome, Apelido, CPF/CNPJ -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-lg-4">
+                                {% with field=form.full_name %}
+                                <div class="form-floating {% if field.errors %}is-invalid{% endif %}">
+                                    <input type="{{ field.widget.input_type }}"
+                                           class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                           id="{{ field.id_for_label }}"
+                                           name="{{ field.html_name }}"
+                                           placeholder=" "
+                                           value="{{ field.value|default_if_none:'' }}">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                            </div>
+
+                            <div class="col-12 col-lg-4">
+                                {% with field=form.preferred_name %}
+                                <div class="form-floating {% if field.errors %}is-invalid{% endif %}">
+                                    <input type="{{ field.widget.input_type }}"
+                                           class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                           id="{{ field.id_for_label }}"
+                                           name="{{ field.html_name }}"
+                                           placeholder=" "
+                                           value="{{ field.value|default_if_none:'' }}">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                            </div>
+
+                            <div class="col-12 col-lg-4">
+                                {% with field=form.tax_id %}
+                                <div class="form-floating {% if field.errors %}is-invalid{% endif %}">
+                                    <input type="{{ field.widget.input_type }}"
+                                           class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                           id="{{ field.id_for_label }}"
+                                           name="{{ field.html_name }}"
+                                           placeholder=" "
+                                           value="{{ field.value|default_if_none:'' }}">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+
+                        <!-- Linha 2: Telefone, Email, Cidade -->
+                        <div class="row g-3 mb-3">
+                            <div class="col-12 col-lg-4">
+                                {% with field=form.phone %}
+                                <div class="form-floating {% if field.errors %}is-invalid{% endif %}">
+                                    <input type="{{ field.widget.input_type }}"
+                                           class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                           id="{{ field.id_for_label }}"
+                                           name="{{ field.html_name }}"
+                                           placeholder=" "
+                                           value="{{ field.value|default_if_none:'' }}">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                {% with field=form.email %}
+                                <div class="form-floating {% if field.errors %}is-invalid{% endif %}">
+                                    <input type="{{ field.widget.input_type }}"
+                                           class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                           id="{{ field.id_for_label }}"
+                                           name="{{ field.html_name }}"
+                                           placeholder=" "
+                                           value="{{ field.value|default_if_none:'' }}">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                            </div>
+                             <div class="col-12 col-lg-4">
+                                {% with field=form.address_city %}
+                                <div class="form-floating {% if field.errors %}is-invalid{% endif %}">
+                                    <input type="{{ field.widget.input_type }}"
+                                           class="form-control {% if field.errors %}is-invalid{% endif %}"
+                                           id="{{ field.id_for_label }}"
+                                           name="{{ field.html_name }}"
+                                           placeholder=" "
+                                           value="{{ field.value|default_if_none:'' }}">
+                                    <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                            </div>
+                        </div>
+
+                        <!-- Linha 3: UF, Tipo Fornecedor, Ativo -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-12 col-lg-4">
+                                {% with field=form.address_state %}
+                                <div class="form-group {% if field.errors %}is-invalid{% endif %}">
+                                    <label class="form-label fw-bold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    <select class="form-select {% if field.errors %}is-invalid{% endif %}"
+                                            id="{{ field.id_for_label }}" name="{{ field.html_name }}">
+                                        {% for val, txt in field.field.choices %}
+                                        <option value="{{ val }}" {% if field.value|default_if_none:''|stringformat:"s" == val|stringformat:"s" %}selected{% endif %}>{{ txt }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                            </div>
+                            <div class="col-12 col-lg-4">
+                                {% with field=form.supplier_type %}
+                                <div class="form-group {% if field.errors %}is-invalid{% endif %}">
+                                    <label class="form-label fw-bold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    <select class="form-select {% if field.errors %}is-invalid{% endif %}"
+                                            id="{{ field.id_for_label }}" name="{{ field.html_name }}">
+                                        {% for val, txt in field.field.choices %}
+                                        <option value="{{ val }}" {% if field.value|default_if_none:''|stringformat:"s" == val|stringformat:"s" %}selected{% endif %}>{{ txt }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                            </div>
+                             <div class="col-12 col-lg-4">
+                                {% with field=form.is_active %}
+                                <div class="form-group {% if field.errors %}is-invalid{% endif %}">
+                                    <label class="form-label fw-bold" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                                    <select class="form-select {% if field.errors %}is-invalid{% endif %}"
+                                            id="{{ field.id_for_label }}" name="{{ field.html_name }}">
+                                        {% for val, txt in field.field.choices %}
+                                        <option value="{{ val }}" {% if field.value|default_if_none:''|stringformat:"s" == val|stringformat:"s" %}selected{% endif %}>{{ txt }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                             </div>
+                        </div>
+                    </div>
+                </section>
+
+                 <section class="detail-section" aria-labelledby="formato-heading">
+                     <header class="detail-section-header">
+                        <h2 id="formato-heading" class="h5">
+                            <i class="bi bi-file-earmark-arrow-down me-2"></i> Formato de Saída
+                        </h2>
+                     </header>
+                     <div class="detail-section-body">
+                         <div class="row g-3">
+                              <div class="col-md-4">
+                                {% with field=form.output_format %}
+                                 <div class="form-floating {% if field.errors %}is-invalid{% endif %}">
+                                     <select class="form-select {% if field.errors %}is-invalid{% endif %}"
+                                             id="{{ field.id_for_label }}"
+                                             name="{{ field.html_name }}">
+                                        {% for val, txt in field.field.choices %}
+                                            <option value="{{ val }}" {% if field.value|default_if_none:''|stringformat:"s" == val|stringformat:"s" %}selected{% endif %}>
+                                                {{ txt }}
+                                            </option>
+                                        {% endfor %}
+                                     </select>
+                                     <label for="{{ field.id_for_label }}">
+                                          {{ field.label }}
+                                     </label>
+                                 </div>
+                                  {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors|join:", " }}</div>{% endif %}
+                                {% endwith %}
+                              </div>
+                         </div>
+                     </div>
+                 </section>
+
+                <div class="d-flex justify-content-end mt-4 pt-3 border-top">
+                    <button type="submit" class="btn btn-primary p-3" id="generateReportBtn">
+                        <i class="bi bi-download me-1"></i> Gerar Relatório
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'reports/js/supplier_report_form.js' %}"></script>
+{% endblock %}

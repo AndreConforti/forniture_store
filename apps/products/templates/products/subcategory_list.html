@@ -1,0 +1,79 @@
+{% extends "base/base_home.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Subcategorias</h2>
+        <a href="{% url 'products:subcategory_create' %}" class="btn">
+            <i class="bi bi-plus-circle"></i> Nova Subcategoria
+        </a>
+    </div>
+
+    <!-- Campo de Busca - Mesmo estilo do category_list.html -->
+    <form method="get" class="mb-4">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-group">
+                    <input 
+                        type="text" 
+                        name="search" 
+                        class="form-control" 
+                        placeholder="Buscar por nome, abreviação ou categoria..."
+                        value="{{ request.GET.search }}"
+                    >
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-search"></i> Buscar
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!-- Tabela de Subcategorias -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Código</th>
+                            <th>Nome</th>
+                            <th>Categoria</th>
+                            <th>Status</th>
+                            <th>Descrição</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for subcategory in subcategories %}
+                        <tr class="align-middle">
+                            <td>
+                                <a href="{% url 'products:subcategory_update' subcategory.pk %}" class="text-decoration-none">
+                                    <span class="badge bg-primary">{{ subcategory.category.abbreviation }}.{{ subcategory.abbreviation }}</span>
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{% url 'products:subcategory_update' subcategory.pk %}" class="text-decoration-none text-dark">
+                                    {{ subcategory.name }}
+                                </a>
+                            </td>
+                            <td>{{ subcategory.category.name }}</td>
+                            <td>
+                                <span class="badge {% if subcategory.is_active %}bg-success{% else %}bg-secondary{% endif %}">
+                                    {% if subcategory.is_active %}Ativo{% else %}Inativo{% endif %}
+                                </span>
+                            </td>
+                            <td>{{ subcategory.description|truncatechars:40|default:"-" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">Nenhuma subcategoria cadastrada.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

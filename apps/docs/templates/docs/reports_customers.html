@@ -1,0 +1,150 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Gerando Relatório de Clientes - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Gerando Relatório de Clientes</h1>
+  <p class="lead">
+    Utilize este formulário para filtrar e exportar informações sobre seus
+    clientes cadastrados no sistema.
+  </p>
+
+  <section>
+    <h2>
+      <i class="bi bi-input-cursor-text me-2"></i>Acessando o Formulário de
+      Relatório
+    </h2>
+    <ol>
+      <li>No menu lateral (sidebar), expanda a seção "Relatórios".</li>
+      <li>Clique em <strong>"Relatório de Clientes"</strong>.</li>
+    </ol>
+    <img
+      src="{% static 'docs/img/placeholder_customer_report_form.png' %}"
+      alt="Formulário de Relatório de Clientes Vazio"
+      class="img-fluid screenshot my-2"
+    />
+  </section>
+
+  <section>
+    <h2><i class="bi bi-filter me-2"></i>Opções de Filtro</h2>
+    <p>
+      A seção "Opções de Filtro" permite que você restrinja quais clientes serão
+      incluídos no relatório. O formulário é organizado em linhas para facilitar o uso.
+    </p>
+    <img
+      src="{% static 'docs/img/placeholder_customer_report_filters.png' %}"
+      alt="Filtros do Relatório de Clientes"
+      class="img-fluid screenshot my-2"
+    />
+    <p><strong>Linha 1: Dados de Identificação</strong></p>
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>Nome Completo / Razão Social:</strong> Digite parte do nome ou razão social.
+      </li>
+      <li class="list-group-item">
+        <strong>Apelido / Nome Fantasia:</strong> Digite parte do apelido ou nome fantasia.
+      </li>
+      <li class="list-group-item">
+        <strong>CPF/CNPJ:</strong> Digite parte do CPF ou CNPJ (somente números).
+      </li>
+    </ul>
+
+    <p><strong>Linha 2: Contato e Localização</strong></p>
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>Telefone:</strong> Digite parte do número de telefone.
+      </li>
+      <li class="list-group-item">
+        <strong>E-mail:</strong> Digite parte do endereço de e-mail.
+      </li>
+      <li class="list-group-item">
+        <strong>Cidade do Endereço:</strong> Digite parte do nome da cidade para filtrar clientes por localização.
+      </li>
+    </ul>
+
+    <p><strong>Linha 3: Filtros de Categoria</strong></p>
+    <ul class="list-group list-group-flush mb-3">
+       <li class="list-group-item">
+        <strong>UF do Endereço:</strong> Use a lista suspensa (<i class="bi bi-caret-down-fill"></i>) para selecionar um Estado (UF) específico.
+      </li>
+      <li class="list-group-item">
+        <strong>Tipo de Cliente:</strong> Selecione "Pessoa Física", "Pessoa Jurídica" ou "Todos".
+      </li>
+      <li class="list-group-item">
+        <strong>Cliente Ativo?:</strong> Filtre por clientes com status "Sim" (Ativo) ou "Não" (Inativo).
+      </li>
+      <li class="list-group-item">
+        <strong>Cliente VIP?:</strong> Filtre por clientes marcados como "Sim" (VIP) ou "Não".
+      </li>
+    </ul>
+    <div class="alert alert-info mt-2" role="alert">
+      <i class="bi bi-info-circle-fill me-1"></i> Você pode usar um ou mais
+      filtros combinados. Deixe um campo de texto vazio ou uma lista suspensa como "Todos" para não aplicar o filtro correspondente.
+    </div>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-file-earmark-arrow-down me-2"></i>Formato de Saída</h2>
+    <p>
+      Na seção "Formato de Saída", escolha como você deseja que o relatório seja
+      gerado.
+    </p>
+    <img
+      src="{% static 'docs/img/placeholder_report_output_format.png' %}"
+      alt="Opção de Formato de Saída do Relatório"
+      class="img-fluid screenshot my-2"
+      style="max-width: 400px"
+    />
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>Excel (.xlsx):</strong> Gera uma planilha eletrônica. Ideal para análise de dados.
+      </li>
+      <li class="list-group-item">
+        <strong>CSV (.csv):</strong> Gera um arquivo de texto com valores separados por delimitador. Formato versátil para importação.
+      </li>
+      <li class="list-group-item">
+        <strong>JSON (.json):</strong> Gera um arquivo de texto estruturado. Ideal para integração entre sistemas.
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-download me-2"></i>Gerando o Relatório</h2>
+    <p>
+      Após definir os filtros e o formato, clique no botão para gerar e baixar o
+      arquivo.
+    </p>
+    <ol>
+      <li>
+        Clique no botão <strong>"Gerar Relatório"</strong> no final da página.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_generate_report_button.png' %}"
+        alt="Botão Gerar Relatório"
+        class="img-fluid screenshot my-2"
+        style="max-width: 300px"
+      />
+      <li>O sistema processará a solicitação com base nos seus filtros.</li>
+      <li>
+        Se a geração for bem-sucedida, o download do arquivo (no formato
+        escolhido) começará automaticamente no seu navegador.
+      </li>
+    </ol>
+    <div class="alert alert-info mt-2" role="alert">
+      <i class="bi bi-info-circle-fill me-1"></i> Se nenhum cliente corresponder
+      aos filtros, o relatório gerado pode estar vazio (apenas com cabeçalhos).
+    </div>
+  </section>
+
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{% url 'docs:reports_overview' %}" class="btn btn-outline-secondary"
+      ><i class="bi bi-arrow-left-short"></i> Voltar: Visão Geral</a
+    >
+    <a href="{% url 'docs:reports_suppliers' %}" class="btn btn-primary"
+      >Próximo: Relatório de Fornecedores <i class="bi bi-arrow-right-short"></i
+    ></a>
+  </div>
+{% endblock tutorial_page_content %}

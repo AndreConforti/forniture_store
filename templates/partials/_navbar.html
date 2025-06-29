@@ -1,0 +1,99 @@
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-dark">
+    <div class="container-fluid">
+        <!-- 1. Navbar Brand  -->
+        <img src="{% static '/css/img/logotipo.png' %}" alt="Forniture Store" class="logo rounded-2">
+        <!-- 2. Botão Toggler (Hambúrguer) -->
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavContent" aria-controls="navbarNavContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- 3. Conteúdo Colapsável da Navbar -->
+        <div class="collapse navbar-collapse" id="navbarNavContent">
+            <!-- Itens de navegação à esquerda/centro -->
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item mx-4">
+                    <a class="nav-link" href="{% url 'showroom:dashboard' %}">Dashboard</a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link" href="{% url 'customers:list' %}">Clientes</a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link" href="#">Fornecedores</a>
+                    {% comment %} <a class="nav-link" href="{% url 'suppliers:list' %}">Fornecedores</a> {% endcomment %}
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link" href="#">Produtos</a>
+                </li>
+                <li class="nav-item mx-4">
+                    <a class="nav-link" href="{% url 'docs:index' %}">
+                        <i class="bi bi-question-circle me-1"></i> Ajuda
+                    </a>
+                </li>
+            </ul>
+            <!-- Itens de navegação à direita (usuário, notificações) -->
+            <ul class="navbar-nav">
+                {% comment %} <li class="nav-item">
+                    <a class="nav-link" href="#">
+                        <i class="bi bi-bell"></i>
+                        <span class="badge rounded-pill bg-danger">3</span>
+                    </a>
+                </li> {% endcomment %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-circle me-1"></i> Olá, {{ request.user.first_name|default:request.user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUser">
+                        <!-- INÍCIO: Opções de Tema -->
+                        <li><h6 class="dropdown-header">Escolha seu Tema</h6></li>
+                        {% if THEME_CHOICES_FOR_NAVBAR %}
+                            {% for theme_choice in THEME_CHOICES_FOR_NAVBAR %} 
+                            <li>
+                                <form action="{% url 'employees:change_theme' %}" method="post" class="d-block">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="selected_theme_value" value="{{ theme_choice.value }}">
+                                    <button type="submit"
+                                            class="dropdown-item d-flex align-items-center {% if request.user.selected_theme == theme_choice.value %}active fw-bold{% endif %}">
+                                        <span class="theme-preview-circle me-2"
+                                              style="background-color: {{ theme_choice.bg_color }}; border: 2px solid {{ theme_choice.border_color }};">
+                                        </span>
+                                        {{ theme_choice.name }}
+                                    </button>
+                                </form>
+                            </li>
+                            {% endfor %}
+                        {% endif %}
+                        <li><hr class="dropdown-divider"></li>
+                        <!-- FIM: Opções de Tema -->
+                        <li>
+                            <button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#logoutModal">
+                                <i class="bi bi-box-arrow-right me-2"></i> Sair
+                            </button>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Modal de Confirmação de Logout (mantido como está) -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" action="{% url 'employees:logout_page' %}"> 
+                {% csrf_token %}
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logoutModalLabel">Confirmar Saída</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Tem certeza que deseja sair do sistema?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

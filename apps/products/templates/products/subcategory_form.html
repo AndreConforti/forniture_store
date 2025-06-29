@@ -1,0 +1,144 @@
+{% extends "base/base_home.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid mt-4">
+    <article class="card border-0 shadow-sm">
+        <header class="card-header">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="d-flex align-items-center">
+                    <i class="bi bi-tags fs-4 me-2"></i>
+                    <h1 class="m-0 h4">
+                        {% if object %}Editar{% else %}Nova{% endif %} Subcategoria
+                    </h1>
+                </div>
+                <a href="{% if object %}{% url 'products:subcategory_update' object.pk %}{% else %}{% url 'products:subcategory_list' %}{% endif %}" 
+                   class="btn">
+                    <i class="bi bi-arrow-left me-1"></i> Voltar
+                </a>
+            </div>
+        </header>
+        
+        <div class="card-body p-4">
+            <form method="post">
+                {% csrf_token %}
+                
+                <div class="row g-3 mb-4">
+                    <!-- Categoria - Corrigido para form-floating -->
+                    <div class="col-md-3">
+                        <div class="form-floating">
+                            <select class="form-select {% if form.category.errors %}is-invalid{% endif %}" 
+                                    id="{{ form.category.id_for_label }}"
+                                    name="{{ form.category.html_name }}">
+                                {% for value, label in form.category.field.choices %}
+                                    <option value="{{ value }}" 
+                                        {% if form.category.value == value %}selected{% endif %}>
+                                        {{ label }}
+                                    </option>
+                                {% endfor %}
+                            </select>
+                            <label for="{{ form.category.id_for_label }}" class="text-navy">
+                                {{ form.category.label }} <span class="text-danger">*</span>
+                            </label>
+                            {% if form.category.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.category.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <small class="form-text text-muted">
+                            <i class="bi bi-info-circle"></i> {{ form.category.help_text }}
+                        </small>
+                    </div>
+                    
+                    <!-- Abreviação -->
+                    <div class="col-md-2">
+                        <div class="form-floating">
+                            <input type="text" 
+                                   class="form-control {% if form.abbreviation.errors %}is-invalid{% endif %}" 
+                                   id="{{ form.abbreviation.id_for_label }}"
+                                   name="{{ form.abbreviation.html_name }}"
+                                   placeholder=" "
+                                   value="{{ form.abbreviation.value|default_if_none:'' }}"
+                                   maxlength="3"
+                                   style="text-transform: uppercase">
+                            <label for="{{ form.abbreviation.id_for_label }}" class="text-navy">
+                                {{ form.abbreviation.label }} <span class="text-danger">*</span>
+                            </label>
+                            {% if form.abbreviation.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.abbreviation.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <small class="form-text text-muted">
+                            <i class="bi bi-info-circle"></i> {{ form.abbreviation.help_text }}
+                        </small>
+                    </div>
+                    
+                    <!-- Nome -->
+                    <div class="col-md-3">
+                        <div class="form-floating">
+                            <input type="text" 
+                                   class="form-control {% if form.name.errors %}is-invalid{% endif %}" 
+                                   id="{{ form.name.id_for_label }}"
+                                   name="{{ form.name.html_name }}"
+                                   placeholder=" "
+                                   value="{{ form.name.value|default_if_none:'' }}"
+                                   maxlength="50">
+                            <label for="{{ form.name.id_for_label }}" class="text-navy">
+                                {{ form.name.label }} <span class="text-danger">*</span>
+                            </label>
+                            {% if form.name.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.name.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <small class="form-text text-muted">
+                            <i class="bi bi-info-circle"></i> {{ form.name.help_text }}
+                        </small>
+                    </div>
+                    
+                    <!-- Descrição -->
+                    <div class="col-md-4">
+                        <div class="form-floating">
+                            <input type="text" 
+                                   class="form-control {% if form.description.errors %}is-invalid{% endif %}"
+                                   id="{{ form.description.id_for_label }}"
+                                   name="{{ form.description.html_name }}"
+                                   placeholder=" "
+                                   value="{{ form.description.value|default_if_none:'' }}"
+                                   maxlength="255">
+                            <label for="{{ form.description.id_for_label }}" class="text-navy">
+                                {{ form.description.label }}
+                            </label>
+                            {% if form.description.errors %}
+                                <div class="invalid-feedback d-block">
+                                    {{ form.description.errors|join:", " }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <small class="form-text text-muted">
+                            <i class="bi bi-info-circle"></i> {{ form.description.help_text }}
+                        </small>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-end mt-4">
+                    <button type="submit" class="btn btn-primary me-2">
+                        <i class="bi bi-check-circle me-1"></i> Salvar
+                    </button>
+                    <a href="{% url 'products:subcategory_list' %}" class="btn btn-outline-secondary">
+                        Cancelar
+                    </a>
+                </div>
+            </form>
+        </div>
+    </article>
+</div>
+{% endblock %}
+
+{% block scripts %}
+    <script src="{% static 'products/js/subcategory_form.js' %}"></script>
+{% endblock %}

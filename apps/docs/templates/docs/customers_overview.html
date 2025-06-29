@@ -1,0 +1,94 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Gerenciando Clientes: Visão Geral - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Gerenciando Clientes - Visão Geral</h1>
+  <p class="lead">
+    O módulo de clientes é uma parte essencial do sistema, permitindo que você
+    mantenha um registro organizado de todas as pessoas e empresas que interagem
+    com a Forniture Store.
+  </p>
+
+  <section>
+    <h2>
+      <i class="bi bi-compass me-2"></i>Acessando as Funcionalidades de Clientes
+    </h2>
+    <p>
+      Você pode acessar as funcionalidades relacionadas a clientes de duas
+      maneiras principais:
+    </p>
+    <ul>
+      <li>
+        <strong>Pela Barra de Navegação Superior:</strong> Clique no item
+        "Clientes" na barra de navegação principal para ir diretamente para a
+        lista de clientes.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_navbar_clientes.png' %}"
+        alt="Item Clientes na Navbar"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>
+        <strong>Pelo Menu Lateral (Sidebar):</strong> Clique no botão de menu (<i
+          class="bi bi-list"
+        ></i>
+        Menu) no canto esquerdo para abrir a sidebar. Expanda a seção "Clientes"
+        para ver as opções "Cadastrar Cliente" e "Listar Clientes".
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_sidebar_clientes.png' %}"
+        alt="Seção Clientes na Sidebar"
+        class="img-fluid screenshot my-2"
+      />
+    </ul>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-card-list me-2"></i>O que você pode fazer?</h2>
+    <p>Com o módulo de clientes, você será capaz de:</p>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <i class="bi bi-person-plus-fill me-2 text-success"></i>Cadastrar novos
+        clientes, sejam eles Pessoas Físicas (consumidores) ou Pessoas Jurídicas
+        (empresas).
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-search me-2 text-info"></i>Consultar a lista de todos os
+        clientes cadastrados, com opções de busca e filtro.
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-eye-fill me-2 text-primary"></i>Visualizar os detalhes
+        completos de um cliente específico, incluindo seu endereço e informações
+        adicionais.
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-pencil-fill me-2 text-warning"></i>Editar as informações
+        de um cliente existente, caso haja alguma alteração ou correção a ser
+        feita.
+      </li>
+    </ul>
+  </section>
+
+  <div class="alert alert-info mt-4" role="alert">
+    <p>
+      <i class="bi bi-lightbulb-fill me-1"></i> Manter os dados dos clientes
+      atualizados é fundamental para um bom relacionamento e para o sucesso das
+      suas vendas e marketing!
+    </p>
+    <hr />
+    <p class="mb-0">
+      Nas próximas seções, detalharemos como realizar cada uma dessas ações.
+    </p>
+  </div>
+
+  <div class="d-flex justify-content-end mt-4">
+    <a href="{% url 'docs:customers_create' %}" class="btn btn-primary"
+      >Próximo: Cadastrar Cliente <i class="bi bi-arrow-right-short"></i
+    ></a>
+  </div>
+{% endblock tutorial_page_content %}

@@ -1,0 +1,167 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Cadastrar Novo Fornecedor - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Cadastrando um Novo Fornecedor</h1>
+  <p class="lead">
+    Siga estes passos para adicionar um novo fornecedor ao sistema. Um cadastro detalhado é essencial para uma boa gestão de compras e parcerias.
+  </p>
+
+  <section>
+    <h2>
+      <i class="bi bi-input-cursor-text me-2"></i>Acessando o Formulário de Cadastro
+    </h2>
+    <p>Você pode iniciar o cadastro de um novo fornecedor de duas formas:</p>
+    <ul>
+      <li>
+        Na tela de
+        <a href="{% url 'docs:suppliers_manage' %}#consultar">Listagem de Fornecedores</a>, clique no botão <strong>"Novo Fornecedor"</strong> no canto superior direito.
+      </li>
+      <li>
+        No menu lateral (sidebar), expanda a seção "Fornecedores" e clique em <strong>"Cadastrar Novo"</strong>.
+      </li>
+    </ul>
+    <p>Ambas as opções levarão você ao formulário de cadastro de fornecedor.</p>
+    <img
+      src="{% static 'docs/img/placeholder_supplier_form_empty.png' %}"
+      alt="Formulário de Cadastro de Fornecedor"
+      class="img-fluid screenshot my-2"
+    />
+    <p>
+      O formulário é dividido em abas para melhor organização: <strong>Dados Básicos e Fiscais</strong>, <strong>Endereço</strong>, <strong>Contato</strong>, <strong>Dados Bancários</strong> e <strong>Observações</strong>.
+    </p>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-card-checklist me-2"></i>Aba "Dados Básicos e Fiscais"</h2>
+    <p>
+      Esta aba contém as informações principais de identificação e fiscais do fornecedor.
+    </p>
+    <img
+      src="{% static 'docs/img/placeholder_supplier_form_basic_fiscal.png' %}"
+      alt="Aba Dados Básicos e Fiscais do Fornecedor"
+      class="img-fluid screenshot my-2"
+    />
+
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>Tipo de Fornecedor <span class="text-danger">*</span>:</strong>
+        Selecione se o fornecedor é "Pessoa Física" ou "Pessoa Jurídica".
+        <div class="alert alert-warning mt-1 p-2">
+          <small><i class="bi bi-exclamation-triangle-fill me-1"></i><strong>Importante:</strong> A escolha do tipo afeta a validação do CPF/CNPJ, a visibilidade dos campos "Inscrição Estadual" e "Municipal", e o comportamento dos botões de busca de dados (CNPJ e CEP).</small>
+        </div>
+      </li>
+      <li class="list-group-item">
+        <strong>Nome Completo / Razão Social <span class="text-danger">*</span>:</strong> Digite o nome completo (PF) ou a razão social (PJ).
+      </li>
+      <li class="list-group-item">
+        <strong>Apelido / Nome Fantasia:</strong> Campo opcional para PF. <strong>Obrigatório para Pessoa Jurídica.</strong>
+      </li>
+      <li class="list-group-item">
+        <strong>CPF/CNPJ <span class="text-danger">*</span>:</strong> Digite apenas os números do documento.
+        <ul>
+          <li>Para <strong>Pessoa Física</strong>, o sistema validará o CPF.</li>
+          <li>
+            Para <strong>Pessoa Jurídica</strong>, o sistema validará o CNPJ. Um botão de busca (<i class="bi bi-search"></i>) ao lado do campo será habilitado. Ao clicar, o sistema tentará buscar dados da empresa (Razão Social, Nome Fantasia, Inscrição Estadual, Endereço) e preencher os campos.
+          </li>
+        </ul>
+        <img
+          src="{% static 'docs/img/placeholder_supplier_form_taxid_search.png' %}"
+          alt="Busca CNPJ Fornecedor"
+          class="img-fluid screenshot my-1"
+          style="max-width: 400px"
+        />
+      </li>
+      <li class="list-group-item">
+        <strong>Inscrição Estadual / Municipal:</strong> Estes campos são visíveis e aplicáveis apenas para <strong>Pessoa Jurídica</strong>. Podem ser preenchidos automaticamente pela busca de CNPJ.
+      </li>
+    </ul>
+    <p class="form-text">
+      <span class="text-danger">*</span> Campos obrigatórios.
+    </p>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-geo-alt me-2"></i>Aba "Endereço"</h2>
+    <p>Informações sobre a localização do fornecedor.</p>
+    <img
+      src="{% static 'docs/img/placeholder_supplier_form_address.png' %}"
+      alt="Aba Endereço do Fornecedor"
+      class="img-fluid screenshot my-2"
+    />
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>CEP:</strong> Digite o CEP (apenas números).
+        <ul>
+          <li>Se o "Tipo de Fornecedor" for <strong>Pessoa Física</strong>, um botão de busca (<i class="bi bi-search"></i>) será habilitado. Ao clicar, o sistema buscará Logradouro, Bairro, Cidade e UF.</li>
+          <li>Se for <strong>Pessoa Jurídica</strong> e os dados do CNPJ foram buscados, o CEP e outros campos de endereço podem já estar preenchidos.</li>
+        </ul>
+      </li>
+      <li class="list-group-item"><strong>Logradouro, Número, Complemento, Bairro, Cidade, UF:</strong> Preencha os demais campos do endereço.</li>
+    </ul>
+  </section>
+  
+  <section>
+    <h2><i class="bi bi-person-lines-fill me-2"></i>Aba "Contato"</h2>
+    <p>Dados para comunicação com o fornecedor.</p>
+    <img
+      src="{% static 'docs/img/placeholder_supplier_form_contact.png' %}"
+      alt="Aba Contato do Fornecedor"
+      class="img-fluid screenshot my-2"
+    />
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item"><strong>Telefone:</strong> Número de telefone.</li>
+      <li class="list-group-item"><strong>E-mail:</strong> Endereço de e-mail.</li>
+      <li class="list-group-item"><strong>Pessoa de Contato:</strong> Nome da pessoa principal para contato no fornecedor.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-bank2 me-2"></i>Aba "Dados Bancários"</h2>
+    <p>Informações para pagamentos ao fornecedor.</p>
+    <img
+      src="{% static 'docs/img/placeholder_supplier_form_bank.png' %}"
+      alt="Aba Dados Bancários do Fornecedor"
+      class="img-fluid screenshot my-2"
+    />
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item"><strong>Banco:</strong> Nome do banco.</li>
+      <li class="list-group-item"><strong>Agência:</strong> Número da agência.</li>
+      <li class="list-group-item"><strong>Conta:</strong> Número da conta.</li>
+      <li class="list-group-item"><strong>Chave PIX:</strong> Chave PIX do fornecedor (CPF/CNPJ, e-mail, telefone, aleatória).</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-info-circle me-2"></i>Aba "Observações"</h2>
+    <p>Espaço para anotações adicionais sobre o fornecedor.</p>
+    <img
+      src="{% static 'docs/img/placeholder_supplier_form_notes.png' %}"
+      alt="Aba Observações do Fornecedor"
+      class="img-fluid screenshot my-2"
+    />
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item"><strong>Observações:</strong> Qualquer informação relevante, como termos de negociação, produtos específicos, etc.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-check2-circle me-2"></i>Salvando o Fornecedor</h2>
+    <p>Após preencher todas as informações desejadas, revise os dados.</p>
+    <ol>
+      <li>Clique no botão <strong>"Salvar Fornecedor"</strong> no final do formulário.</li>
+      <li>Se houver erros, eles serão indicados. Corrija e tente salvar novamente.</li>
+      <li>Se tudo estiver correto, o fornecedor será salvo e você será redirecionado para a <a href="{% url 'docs:suppliers_manage' %}#consultar">Lista de Fornecedores</a>, com uma mensagem de sucesso.</li>
+    </ol>
+    <p>Para descartar, clique em <strong>"Cancelar"</strong>.</p>
+  </section>
+
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{% url 'docs:suppliers_overview' %}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left-short"></i> Voltar: Visão Geral</a>
+    <a href="{% url 'docs:suppliers_manage' %}" class="btn btn-primary">Próximo: Consultar e Editar <i class="bi bi-arrow-right-short"></i></a>
+  </div>
+{% endblock tutorial_page_content %}

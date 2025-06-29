@@ -1,0 +1,89 @@
+{% extends "base/base_home.html" %}
+{% load static %}
+
+{% block title %}Lista de Clientes - {{ block.super }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2>Clientes</h2>
+        <a href="{% url 'customers:create' %}" class="btn btn-primary p-3 d-none d-lg-block">
+            <i class="bi bi-plus-circle"></i> Novo Cliente
+        </a>
+    </div>
+
+    <form method="get" class="mb-4">
+        <div class="row g-2 align-items-end">            
+            <!-- Campo de Busca -->
+            <div class="col-12 col-lg-6">
+                <label for="search-input" class="form-label visually-hidden">Termo de Busca</label>
+                <input 
+                    type="text" 
+                    id="search-input"
+                    name="search" 
+                    class="form-control form-control-lg"
+                    placeholder="Buscar por nome, CPF/CNPJ ou e-mail..."
+                    value="{{ request.GET.search }}"
+                >
+            </div>
+            <!-- Filtro por Tipo de Cliente -->
+            <div class="col-12 col-lg-auto">
+                <label for="customer-type-select" class="form-label visually-hidden">Tipo de Cliente</label>
+                <select 
+                    name="customer_type" 
+                    id="customer-type-select"
+                    class="form-select form-select-lg"
+                >
+                    <option value="all" {% if not request.GET.customer_type or request.GET.customer_type == 'all' %}selected{% endif %}>Todos os Tipos</option>
+                    <option value="IND" {% if request.GET.customer_type == 'IND' %}selected{% endif %}>Pessoa Física</option>
+                    <option value="CORP" {% if request.GET.customer_type == 'CORP' %}selected{% endif %}>Pessoa Jurídica</option>
+                </select>
+            </div>
+            <!-- Botão de Submissão -->
+            <div class="col-12 col-lg-auto">
+                <button type="submit" class="btn btn-primary btn-lg w-100 w-lg-auto">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+            </div>
+        </div>
+    </form>
+
+<!-- Tabela -->
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Nome</th>
+                            <th>CPF/CNPJ</th>
+                            <th>Tipo</th>
+                            <th>Telefone</th>
+                            <th>E-mail</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for customer in customers %}
+                        <tr class="align-middle">
+                            <td>
+                                <a href="{% url 'customers:detail' customer.pk %}" class="text-decoration-none text-dark">
+                                    {{ customer.display_name }}
+                                </a>
+                            </td>
+                            <td>{{ customer.formatted_tax_id }}</td>
+                            <td>{{ customer.get_customer_type_display }}</td>
+                            <td>{{ customer.formatted_phone }}</td>
+                            <td>{{ customer.email|default:"-" }}</td>
+                        </tr>
+                        {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center">Nenhum cliente cadastrado.</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

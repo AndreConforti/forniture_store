@@ -1,0 +1,132 @@
+<div class="row g-3 mb-4">
+    <!-- Tipo de Cliente -->
+    <div class="col-md-3">
+        <div class="form-floating">
+            <select class="form-select customer-type-select {% if form.customer_type.errors %}is-invalid{% endif %}" id="{{ form.customer_type.id_for_label }}"
+                    name="{{ form.customer_type.html_name }}"
+                    data-action="customer-type-change">
+                {% for value, label in form.customer_type.field.choices %}
+                    <option value="{{ value }}" {% if form.customer_type.value|stringformat:"s" == value|stringformat:"s" %}selected{% endif %}>
+                        {{ label }}
+                    </option>
+                {% endfor %}
+            </select>
+            <label for="{{ form.customer_type.id_for_label }}">
+                {{ form.customer_type.label }}
+                {% if form.customer_type.field.required %}<span class="text-danger">*</span>{% endif %}
+            </label>
+        </div>
+        {% if form.customer_type.errors %}
+        <div class="invalid-feedback d-block">
+            {{ form.customer_type.errors|join:", " }}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Nome Completo -->
+    <div class="col-md-5">
+        <div class="form-floating">
+            <input type="text" class="form-control {% if form.full_name.errors %}is-invalid{% endif %}"
+                   id="{{ form.full_name.id_for_label }}"
+                   name="{{ form.full_name.html_name }}"
+                   placeholder=" "
+                   value="{{ form.full_name.value|default_if_none:'' }}">
+            <label for="{{ form.full_name.id_for_label }}">
+                {{ form.full_name.label }}
+                {% if form.full_name.field.required %}<span class="text-danger">*</span>{% endif %}
+            </label>
+        </div>
+        {% if form.full_name.errors %}
+        <div class="invalid-feedback d-block">
+            {{ form.full_name.errors|join:", " }}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Nome Preferido -->
+    <div class="col-md-4">
+        <div class="form-floating">
+            <input type="text" class="form-control {% if form.preferred_name.errors %}is-invalid{% endif %}"
+                   id="{{ form.preferred_name.id_for_label }}"
+                   name="{{ form.preferred_name.html_name }}"
+                   placeholder=" "
+                   value="{{ form.preferred_name.value|default_if_none:'' }}">
+            <label for="{{ form.preferred_name.id_for_label }}">
+                {{ form.preferred_name.label }}
+            </label>
+        </div>
+        {% if form.preferred_name.errors %}
+        <div class="invalid-feedback d-block">
+            {{ form.preferred_name.errors|join:", " }}
+        </div>
+        {% endif %}
+    </div>
+</div>
+
+<div class="row g-3 mb-4">
+    <!-- CPF/CNPJ -->
+    <div class="col-md-4">
+        <div class="input-group {% if form.tax_id.errors %}is-invalid{% endif %}">
+            <div class="form-floating">
+                <input type="text" class="form-control {% if form.tax_id.errors %}is-invalid{% endif %}"
+                    id="{{ form.tax_id.id_for_label }}"
+                    name="{{ form.tax_id.html_name }}"
+                    placeholder=" "
+                    value="{{ form.tax_id.value|default_if_none:'' }}"
+                    data-action="document-input"
+                    pattern="\d*"
+                    inputmode="numeric">
+                <label for="{{ form.tax_id.id_for_label }}">
+                    {{ form.tax_id.label }} {% if form.tax_id.field.required %}<span class="text-danger">*</span>{% endif %}
+                </label>
+            </div>
+            <button class="btn btn-outline-secondary" type="button" id="search-tax-id" disabled>
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+         {% if form.tax_id.errors %}
+        <div class="invalid-feedback d-block">
+            {{ form.tax_id.errors|join:", " }}
+        </div>
+        {% endif %}
+        <small class="form-text">Somente números</small>
+    </div>
+
+    <!-- Telefone -->
+    <div class="col-md-3">
+        <div class="form-floating">
+            <input type="tel" class="form-control {% if form.phone.errors %}is-invalid{% endif %}"
+                   id="{{ form.phone.id_for_label }}"
+                   name="{{ form.phone.html_name }}"
+                   placeholder=" "
+                   value="{{ form.phone.value|default_if_none:'' }}">
+            <label for="{{ form.phone.id_for_label }}">
+                {{ form.phone.label }}
+            </label>
+        </div>
+        {% if form.phone.errors %}
+        <div class="invalid-feedback d-block">
+            {{ form.phone.errors|join:", " }}
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- E-mail -->
+    <div class="col-md-5">
+        <div class="form-floating">
+            <input type="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                   id="{{ form.email.id_for_label }}"
+                   name="{{ form.email.html_name }}"
+                   placeholder=" "
+                   value="{{ form.email.value|default_if_none:'' }}">
+            <label for="{{ form.email.id_for_label }}">
+                {{ form.email.label }}
+            </label>
+        </div>
+        {% if form.email.errors %}
+        <div class="invalid-feedback d-block">
+            {{ form.email.errors|join:", " }}
+        </div>
+        {% endif %}
+    </div>
+</div>

@@ -1,0 +1,49 @@
+/* -------------------------------------------------------------------------- */
+/* 1. Links de Navegação da Sidebar do Tutorial                             */
+/* -------------------------------------------------------------------------- */
+
+/* Estilo geral para os links de navegação na sidebar */
+#tutorialSidebar .nav-link {
+    color: var(--primary-dark);
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+}
+
+/* Ícones dentro dos links (cor inicial igual ao link) */
+#tutorialSidebar .nav-link i.bi {
+    color: var(--primary-dark);
+    transition: color 0.15s ease-in-out;
+}
+
+/* -------------------------------------------------------------------------- */
+/* 2. Estados dos Links (Hover, Active)                                     */
+/* -------------------------------------------------------------------------- */
+
+/* Link Hover */
+#tutorialSidebar .nav-link:hover {
+    color: var(--primary-soft);
+}
+#tutorialSidebar .nav-link:hover i.bi {
+    color: var(--primary-soft);
+}
+
+/* Link Ativo (página atual) */
+#tutorialSidebar .nav-link.active {
+    color: var(--primary-darker);
+    font-weight: bold;
+}
+#tutorialSidebar .nav-link.active i.bi {
+    color: var(--primary-darker); 
+}
+
+/* -------------------------------------------------------------------------- */
+/* 3. Estilos para Imagens de Screenshot no Tutorial                        */
+/* -------------------------------------------------------------------------- */
+
+.screenshot {
+  display: block; 
+  border: 1px solid #dee2e6; 
+  padding: 4px; 
+  background-color: #ffffff; 
+  border-radius: 0.25rem;
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}

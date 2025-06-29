@@ -1,0 +1,113 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Consultar e Editar Fornecedores - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Consultando e Editando Fornecedores</h1>
+  <p class="lead">
+    Aprenda como encontrar fornecedores cadastrados, visualizar seus detalhes e atualizar suas informações.
+  </p>
+
+  <section id="consultar">
+    <h2>
+      <i class="bi bi-search me-2"></i>Consultando Fornecedores (Lista de Fornecedores)
+    </h2>
+    <p>
+      A tela de "Listar Fornecedores" é onde você pode ver todos os fornecedores e procurar por específicos.
+    </p>
+    <ol>
+      <li>
+        Para acessar, clique em "Fornecedores" na barra de navegação superior ou, no menu lateral, expanda "Fornecedores" e clique em "Listar Fornecedores".
+      </li>
+      <li>Você verá uma tabela com os fornecedores.</li>
+      <img
+        src="{% static 'docs/img/placeholder_supplier_list.png' %}"
+        alt="Lista de Fornecedores"
+        class="img-fluid screenshot my-2"
+      />
+    </ol>
+
+    <h3>Filtrando e Buscando Fornecedores</h3>
+    <p>
+      Use os filtros no topo da página:
+    </p>
+    <img
+      src="{% static 'docs/img/placeholder_supplier_list_filters.png' %}"
+      alt="Filtros da Lista de Fornecedores"
+      class="img-fluid screenshot my-2"
+    />
+    <ul>
+      <li>
+        <strong>Campo de Busca:</strong> Digite parte do nome, CNPJ/CPF (somente números), e-mail ou pessoa de contato.
+      </li>
+      <li>
+        <strong>Tipo de Fornecedor:</strong> Selecione "Pessoa Física", "Pessoa Jurídica" ou "Todos os Tipos".
+      </li>
+      <li>
+        Após definir seus critérios, clique em <strong>"Buscar"</strong>.
+      </li>
+    </ul>
+
+    <h3>Informações na Lista</h3>
+    <p>A tabela exibe:</p>
+    <ul>
+      <li><strong>Nome:</strong> Nome/Razão Social (ou Apelido/Fantasia). Clicar leva aos detalhes.</li>
+      <li><strong>CNPJ/CPF:</strong> Documento formatado.</li>
+      <li><strong>Tipo:</strong> "Pessoa Física" ou "Pessoa Jurídica".</li>
+      <li><strong>Telefone.</strong></li>
+      <li><strong>E-mail.</strong></li>
+      <li><strong>Contato:</strong> Pessoa de contato.</li>
+    </ul>
+  </section>
+
+  <section id="detalhar">
+    <h2><i class="bi bi-eye me-2"></i>Visualizando Detalhes do Fornecedor</h2>
+    <ol>
+      <li>
+        Na <a href="#consultar">Lista de Fornecedores</a>, clique no nome do fornecedor.
+      </li>
+      <li>Você será levado para a tela de "Detalhes do Fornecedor".</li>
+      <img
+        src="{% static 'docs/img/placeholder_supplier_detail.png' %}"
+        alt="Detalhes do Fornecedor"
+        class="img-fluid screenshot my-2"
+      />
+      <p>
+        Esta página exibe todas as informações cadastradas, organizadas em seções: Dados Básicos e Fiscais, Endereço, Contato, Dados Bancários e Observações.
+      </p>
+      <li>No rodapé, você encontrará os botões "Editar" e "Ver Todos".</li>
+    </ol>
+  </section>
+
+  <section id="editar">
+    <h2><i class="bi bi-pencil-square me-2"></i>Editando um Fornecedor</h2>
+    <ol>
+      <li>
+        Na tela de <a href="#detalhar">Detalhes do Fornecedor</a>, clique em <strong>"Editar"</strong>.
+      </li>
+      <li>
+        O formulário de edição (idêntico ao de cadastro) será exibido com os dados atuais.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_supplier_form_edit.png' %}"
+        alt="Formulário de Edição de Fornecedor"
+        class="img-fluid screenshot my-2"
+      />
+      <li>Modifique os campos desejados nas abas.</li>
+      <li>A lógica de busca de CNPJ e CEP funciona como no cadastro.</li>
+      <li>Após as alterações, clique em <strong>"Salvar Fornecedor"</strong>.</li>
+      <li>Se houver erros, serão exibidos. Corrija e salve novamente.</li>
+      <li>
+        Com sucesso, você será redirecionado para a <a href="#consultar">Lista de Fornecedores</a> com uma mensagem de confirmação.
+      </li>
+    </ol>
+    <p>Para descartar, clique em <strong>"Cancelar"</strong>.</p>
+  </section>
+
+  <div class="d-flex justify-content-start mt-4">
+    <a href="{% url 'docs:suppliers_create' %}" class="btn btn-outline-secondary"><i class="bi bi-arrow-left-short"></i> Voltar: Cadastrar Fornecedor</a>
+  </div>
+{% endblock tutorial_page_content %}

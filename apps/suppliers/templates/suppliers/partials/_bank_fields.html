@@ -1,0 +1,60 @@
+<div class="row g-3 mb-3">
+    <div class="col-md-4">
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.bank_name.errors %}is-invalid{% endif %}"
+                   id="{{ form.bank_name.id_for_label }}"
+                   name="{{ form.bank_name.html_name }}"
+                   placeholder=" "
+                   value="{{ form.bank_name.value|default_if_none:'' }}"
+                   maxlength="{{ form.bank_name.field.max_length|default:50 }}">
+            <label for="{{ form.bank_name.id_for_label }}">{{ form.bank_name.label }}</label>
+        </div>
+        {% for error in form.bank_name.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.bank_agency.errors %}is-invalid{% endif %}"
+                   id="{{ form.bank_agency.id_for_label }}"
+                   name="{{ form.bank_agency.html_name }}"
+                   placeholder=" "
+                   value="{{ form.bank_agency.value|default_if_none:'' }}"
+                   maxlength="{{ form.bank_agency.field.max_length|default:10 }}">
+            <label for="{{ form.bank_agency.id_for_label }}">{{ form.bank_agency.label }}</label>
+        </div>
+        {% for error in form.bank_agency.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="col-md-4">
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.bank_account.errors %}is-invalid{% endif %}"
+                   id="{{ form.bank_account.id_for_label }}"
+                   name="{{ form.bank_account.html_name }}"
+                   placeholder=" "
+                   value="{{ form.bank_account.value|default_if_none:'' }}"
+                   maxlength="{{ form.bank_account.field.max_length|default:20 }}">
+            <label for="{{ form.bank_account.id_for_label }}">{{ form.bank_account.label }}</label>
+        </div>
+        {% for error in form.bank_account.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-12">
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.pix_key.errors %}is-invalid{% endif %}"
+                   id="{{ form.pix_key.id_for_label }}"
+                   name="{{ form.pix_key.html_name }}"
+                   placeholder=" "
+                   value="{{ form.pix_key.value|default_if_none:'' }}"
+                   maxlength="{{ form.pix_key.field.max_length|default:100 }}">
+            <label for="{{ form.pix_key.id_for_label }}">{{ form.pix_key.label }}</label>
+        </div>
+        {% for error in form.pix_key.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+        {% if form.pix_key.help_text %}<small class="form-text text-muted">{{ form.pix_key.help_text }}</small>{% endif %}
+    </div>
+</div>

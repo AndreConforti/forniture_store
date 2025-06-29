@@ -1,0 +1,14 @@
+<div class="row g-3">
+    <div class="col-12">
+        <div class="form-floating">
+            <textarea class="form-control {% if form.notes.errors %}is-invalid{% endif %}"
+                      id="{{ form.notes.id_for_label }}"
+                      name="{{ form.notes.html_name }}"
+                      placeholder=" "
+                      style="height: 100px"
+                      >{{ form.notes.value|default_if_none:'' }}</textarea>
+            <label for="{{ form.notes.id_for_label }}">{{ form.notes.label }}</label>
+        </div>
+        {% if form.notes.errors %}<div class="invalid-feedback d-block">{{ form.notes.errors|join:", " }}</div>{% endif %}
+    </div>
+</div>

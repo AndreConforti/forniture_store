@@ -1,0 +1,123 @@
+{% load static %}
+
+<button class="btn btn-sidebar rounded-0" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasSidebar" aria-controls="offcanvasSidebar">
+    <i class="bi bi-list me-1"></i>
+    <p>
+        Menu
+    </p>
+</button>
+
+<!-- Sidebar Offcanvas -->
+<div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasSidebar" aria-labelledby="offcanvasSidebarLabel">
+    <div class="offcanvas-header">
+        <h5 class="offcanvas-title" id="offcanvasSidebarLabel">Menu</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+        <ul class="nav flex-column">
+            <!-- Clientes -->
+            <li class="nav-item">
+                <a class="nav-link fw-bold" data-bs-toggle="collapse" href="#customersSubmenu" role="button" aria-expanded="false" aria-controls="customersSubmenu">
+                    <i class="bi bi-people me-2"></i> Clientes
+                </a>
+                <ul class="collapse list-unstyled ms-3" id="customersSubmenu">
+                    <li><a class="nav-link" href="{% url 'customers:create' %}">Cadastrar Novo</a></li>
+                    <li><a class="nav-link" href="{% url 'customers:list' %}">Listar Todos</a></li>
+                </ul>
+            </li>
+
+            <!-- Fornecedores -->
+            <li class="nav-item">
+                <a class="nav-link fw-bold" data-bs-toggle="collapse" href="#suppliersSubmenu" role="button" aria-expanded="false" aria-controls="suppliersSubmenu">
+                    <i class="bi bi-truck me-2"></i> Fornecedores
+                </a>
+                <ul class="collapse list-unstyled ms-3" id="suppliersSubmenu">
+                    {% comment %} <li><a class="nav-link" href="{% url 'suppliers:create' %}">Cadastrar Novo</a></li>
+                    <li><a class="nav-link" href="{% url 'suppliers:list' %}">Listar Fornecedores</a></li> {% endcomment %}
+                    <li><a class="nav-link" href="#">Cadastrar Novo</a></li>
+                    <li><a class="nav-link" href="#">Listar Todos</a></li>
+                </ul>
+            </li>
+
+            <!-- Produtos -->
+            <li class="nav-item">
+                <a class="nav-link fw-bold" data-bs-toggle="collapse" href="#productsSubmenu" role="button" aria-expanded="false" aria-controls="productsSubmenu">
+                    <i class="bi bi-box-seam me-2"></i> Produtos
+                </a>
+                <ul class="collapse list-unstyled ms-3" id="productsSubmenu">
+                    {% comment %} <li><a class="nav-link" href="{% url 'products:category_list' %}">Categorias</a></li>
+                    <li><a class="nav-link" href="{% url 'products:subcategory_list' %}">Subcategorias</a></li> {% endcomment %}
+                    <li><a class="nav-link" href="#">Categorias</a></li>
+                    <li><a class="nav-link" href="#">Subcategorias</a></li>
+                    <li><a class="nav-link" href="#">Cadastrar Produto</a></li>
+                </ul>
+            </li>
+
+            <!-- Estoque -->
+            <li class="nav-item">
+                <a class="nav-link fw-bold" data-bs-toggle="collapse" href="#stockSubmenu" role="button" aria-expanded="false" aria-controls="stockSubmenu">
+                    <i class="bi bi-boxes me-2"></i> Estoque
+                </a>
+                <ul class="collapse list-unstyled ms-3" id="stockSubmenu">
+                    <li><a class="nav-link" href="#">Controle de Estoque</a></li>
+                     <li><a class="nav-link" href="#">Estoque Atual</a></li>
+                     <li><a class="nav-link" href="#">Entradas</a></li>
+                     <li><a class="nav-link" href="#">Saídas</a></li>
+                     <li><a class="nav-link" href="#">Movimentações</a></li>
+                </ul>
+            </li>
+
+            <!-- Pedidos -->
+            <li class="nav-item">
+                <a class="nav-link fw-bold" data-bs-toggle="collapse" href="#ordersSubmenu" role="button" aria-expanded="false" aria-controls="ordersSubmenu">
+                    <i class="bi bi-cart me-2"></i> Pedidos
+                </a>
+                <ul class="collapse list-unstyled ms-3" id="ordersSubmenu">
+                    <li><a class="nav-link" href="#">Novo Pedido</a></li>
+                    <li><a class="nav-link" href="#">Consultar Pedidos</a></li>
+                    <li><a class="nav-link" href="#">Status de Entrega</a></li>
+                </ul>
+            </li>
+
+            <!-- Contas a Pagar -->
+            <li class="nav-item">
+                <a class="nav-link fw-bold" data-bs-toggle="collapse" href="#billsPaySubmenu" role="button" aria-expanded="false" aria-controls="billsPaySubmenu">
+                    <i class="bi bi-credit-card me-2"></i> Contas a Pagar
+                </a>
+                <ul class="collapse list-unstyled ms-3" id="billsPaySubmenu">
+                    <li><a class="nav-link" href="#">Faturas Pendentes</a></li>
+                    <li><a class="nav-link" href="#">Pagamentos Realizados</a></li>
+                </ul>
+            </li>
+
+            <!-- Contas a Receber -->
+            <li class="nav-item">
+                <a class="nav-link fw-bold" data-bs-toggle="collapse" href="#billsReceiveSubmenu" role="button" aria-expanded="false" aria-controls="billsReceiveSubmenu">
+                    <i class="bi bi-cash-coin me-2"></i> Contas a Receber
+                </a>
+                <ul class="collapse list-unstyled ms-3" id="billsReceiveSubmenu">
+                    <li><a class="nav-link" href="#">Pagamentos a Receber</a></li>
+                    <li><a class="nav-link" href="#">Histórico de Pagamentos</a></li>
+                </ul>
+            </li>
+
+            <!-- Relatórios -->
+            <li class="nav-item">
+                <a class="nav-link fw-bold" data-bs-toggle="collapse" href="#reportsSubmenu" role="button" aria-expanded="false" aria-controls="reportsSubmenu">
+                    <i class="bi bi-file-earmark-bar-graph me-2"></i> Relatórios
+                </a>
+                <ul class="collapse list-unstyled ms-3" id="reportsSubmenu">
+                    <li><a class="nav-link" href="#">Clientes</a></li>
+                    <li><a class="nav-link" href="#">Fornecedores</a></li>
+                    {% comment %} <li><a class="nav-link" href="{% url 'reports:customer_report' %}">Clientes</a></li>
+                    <li><a class="nav-link" href="{% url 'reports:supplier_report' %}">Fornecedores</a></li> {% endcomment %}
+                    <li><a class="nav-link" href="#">Produtos</a></li>
+                    <li><a class="nav-link" href="#">Estoque</a></li> 
+                    <li><a class="nav-link" href="#">Pedidos</a></li>
+                    <li><a class="nav-link" href="#">Contas a Pagar</a></li>
+                    <li><a class="nav-link" href="#">Contas a Receber</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+</div>

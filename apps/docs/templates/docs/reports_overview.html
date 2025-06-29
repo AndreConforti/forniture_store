@@ -1,0 +1,93 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Gerenciando Relatórios: Visão Geral - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Gerenciando Relatórios - Visão Geral</h1>
+  <p class="lead">
+    A seção de relatórios permite extrair informações valiosas do sistema para
+    análise e tomada de decisão. Você pode filtrar os dados e escolher o formato
+    de saída desejado.
+  </p>
+
+  <section>
+    <h2>
+      <i class="bi bi-compass me-2"></i>Acessando as Funcionalidades de Relatórios
+    </h2>
+    <p>Você pode acessar a seção de relatórios da seguinte maneira:</p>
+    <ul>
+      <li>
+        <strong>Pelo Menu Lateral (Sidebar):</strong> Clique no botão de menu (<i
+          class="bi bi-list"
+        ></i>
+        Menu) no canto esquerdo para abrir a sidebar. Procure pela seção
+        "Relatórios" e expanda-a para ver os relatórios disponíveis.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_sidebar_reports.png' %}"
+        alt="Seção Relatórios na Sidebar"
+        class="img-fluid screenshot my-2"
+      />
+    </ul>
+  </section>
+
+  <section>
+    <h2>
+      <i class="bi bi-file-earmark-bar-graph me-2"></i>Relatórios Disponíveis
+    </h2>
+    <p>Atualmente, o sistema oferece os seguintes relatórios:</p>
+    <ul class="list-group">
+      <li class="list-group-item">
+        <i class="bi bi-people me-2 text-primary"></i
+        ><a href="{% url 'docs:reports_customers' %}" class="text-decoration-none"
+          >Relatório de Clientes</a
+        >: Permite listar clientes com base em diversos critérios como nome, tipo,
+        status e mais.
+      </li>
+      <li class="list-group-item">
+        <i class="bi bi-truck me-2 text-primary"></i
+        ><a href="{% url 'docs:reports_suppliers' %}" class="text-decoration-none"
+          >Relatório de Fornecedores</a
+        >: Permite listar fornecedores com base em diversos critérios como nome, tipo,
+        status e mais.
+      </li>
+      {% comment %} <li class="list-group-item text-muted">
+        <i class="bi bi-box me-2"></i> Relatório de Produtos (Em Breve)
+      </li>
+      <li class="list-group-item text-muted">
+        <i class="bi bi-boxes me-2"></i> Relatório de Estoque de Produtos (Em
+        Breve)
+      </li>
+      <li class="list-group-item text-muted">
+        <i class="bi bi-receipt me-2"></i> Relatório de Pedidos (Em Breve)
+      </li>
+      <li class="list-group-item text-muted">
+        <i class="bi bi-cash-stack me-2"></i> Relatório de Contas a Pagar (Em
+        Breve)
+      </li>
+      <li class="list-group-item text-muted">
+        <i class="bi bi-wallet me-2"></i> Relatório de Contas a Receber (Em Breve)
+      </li> {% endcomment %}
+    </ul>
+  </section>
+
+  <div class="alert alert-info mt-4" role="alert">
+    <p>
+      <i class="bi bi-lightbulb-fill me-1"></i> Os relatórios são ferramentas
+      poderosas para entender o seu negócio. Explore as opções de filtro para
+      obter exatamente as informações que você precisa!
+    </p>
+  </div>
+
+  <div class="d-flex justify-content-between mt-4">
+    <a href="{% url 'docs:suppliers_manage' %}" class="btn btn-outline-secondary" {# Assuming suppliers_manage is a valid previous page #}
+      ><i class="bi bi-arrow-left-short"></i> Voltar: Consultar Fornecedores</a
+    >
+    <a href="{% url 'docs:reports_customers' %}" class="btn btn-primary"
+      >Próximo: Relatório de Clientes <i class="bi bi-arrow-right-short"></i
+    ></a>
+  </div>
+{% endblock tutorial_page_content %}

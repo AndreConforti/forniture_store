@@ -1,0 +1,566 @@
+/* ==========================================================================
+   1. Definições de Variáveis CSS (:root) e Temas
+   ========================================================================== */
+
+:root, .theme-blue-gray {
+    --primary-darker: #021223;
+    --primary-darker-rgb: 10, 42, 77;
+    --primary-dark: #042345;
+    --primary-dark-rgb: 14, 59, 107;
+    --primary-medium: #093a6a;
+    --primary-medium-rgb: 24, 90, 157;
+    --primary-soft: #1e5e9ab6;
+    --primary-soft-rgb: 43, 116, 185;
+    --primary-light: #5b96d0;
+    --primary-light-rgb: 74, 141, 206;
+    --primary-ultralight: #89b8dd;
+    --primary-ultralight-rgb: 112, 174, 226;
+
+    --secondary-darker: #4A4A4A;
+    --secondary-darker-rgb: 74, 74, 74;
+    --secondary-dark: #737373;
+    --secondary-dark-rgb: 115, 115, 115;
+    --secondary-medium: #A0A0A0;
+    --secondary-medium-rgb: 160, 160, 160;
+    --secondary-soft: #BEBEBEB6;
+    --secondary-soft-rgb: 190, 190, 190;
+    --secondary-light: #DCDCDC;
+    --secondary-light-rgb: 220, 220, 220;
+    --secondary-ultralight: #F5F5F5;
+    --secondary-ultralight-rgb: 245, 245, 245;
+
+    --input-focus-border-color: var(--secondary-darker);
+    --input-focus-box-shadow: 0 0 0 0.25rem rgba(var(--primary-soft-rgb), 0.35);
+
+    /* Fontes, Bordas, Sombras (geralmente não mudam drasticamente com o tema de cor) */
+    --font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --border-radius: 0.375rem;
+    --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+.theme-green-gray {
+    --primary-darker: #011b0c;
+    --primary-darker-rgb: 1, 27, 12;
+    --primary-dark: #01370d;
+    --primary-dark-rgb: 1, 55, 13;
+    --primary-medium: #115b14;
+    --primary-medium-rgb: 17, 91, 20;
+    --primary-soft: #149714b6; 
+    --primary-soft-rgb: 20, 151, 20;
+    --primary-light: #307232;
+    --primary-light-rgb: 48, 114, 50;
+    --primary-ultralight: #6aa174;
+    --primary-ultralight-rgb: 106, 161, 116;
+
+    --secondary-darker: #080808;
+    --secondary-darker-rgb: 8, 8, 8;
+    --secondary-dark: #101010;
+    --secondary-dark-rgb: 16, 16, 16;
+    --secondary-medium: #2a2a2a;
+    --secondary-medium-rgb: 42, 42, 42;
+    --secondary-soft: #3d3d3d;
+    --secondary-soft-rgb: 61, 61, 61;
+    --secondary-light: #a3a3a3;
+    --secondary-light-rgb: 163, 163, 163;
+    --secondary-ultralight: #f0f0f0;
+    --secondary-ultralight-rgb: 240, 240, 240;
+    
+    --input-focus-border-color: var(--secondary-darker);
+    --input-focus-box-shadow: 0 0 0 0.25rem rgba(var(--primary-soft-rgb), 0.35);
+
+    --font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --border-radius: 0.375rem;
+    --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+.theme-brown-sand {
+    --primary-darker: #180b01;
+    --primary-darker-rgb: 48, 24, 8;
+    --primary-dark: #2f1703;
+    --primary-dark-rgb: 74, 42, 15;
+    --primary-medium: #653C1B;
+    --primary-medium-rgb: 101, 60, 27;
+    --primary-soft: #80522Ab6;
+    --primary-soft-rgb: 128, 82, 42;
+    --primary-light: #9B6E41;
+    --primary-light-rgb: 155, 110, 65;
+    --primary-ultralight: #B68F5F;
+    --primary-ultralight-rgb: 182, 143, 95;
+
+    --secondary-darker: #A8987E;
+    --secondary-darker-rgb: 168, 152, 126;
+    --secondary-dark: #C4B49A;
+    --secondary-dark-rgb: 196, 180, 154;
+    --secondary-medium: #E0D0B6;
+    --secondary-medium-rgb: 224, 208, 182;
+    --secondary-soft: #E8DACFB6;
+    --secondary-soft-rgb: 232, 218, 207;
+    --secondary-light: #F2E8DA;
+    --secondary-light-rgb: 242, 232, 218;
+    --secondary-ultralight: #FAF5EF;
+    --secondary-ultralight-rgb: 250, 245, 239;
+    
+    --input-focus-border-color: var(--secondary-darker);
+    --input-focus-box-shadow: 0 0 0 0.25rem rgba(var(--primary-soft-rgb), 0.35);
+
+    --font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --border-radius: 0.375rem;
+    --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+.theme-purple-gray {
+    --primary-darker: #14032a;
+    --primary-darker-rgb: 59, 31, 93;
+    --primary-dark: #2f0a60;
+    --primary-dark-rgb: 72, 40, 115;
+    --primary-medium: #5A308D;
+    --primary-medium-rgb: 90, 48, 141;
+    --primary-soft: #7048A3B6;
+    --primary-soft-rgb: 112, 72, 163;
+    --primary-light: #8C6BBF;
+    --primary-light-rgb: 140, 107, 191;
+    --primary-ultralight: #AE95D9;
+    --primary-ultralight-rgb: 174, 149, 217;
+
+    --secondary-darker: #4A4A4A;
+    --secondary-darker-rgb: 74, 74, 74;
+    --secondary-dark: #737373;
+    --secondary-dark-rgb: 115, 115, 115;
+    --secondary-medium: #A0A0A0;
+    --secondary-medium-rgb: 160, 160, 160;
+    --secondary-soft: #BEBEBEB6;
+    --secondary-soft-rgb: 190, 190, 190;
+    --secondary-light: #DCDCDC;
+    --secondary-light-rgb: 220, 220, 220;
+    --secondary-ultralight: #F5F5F5;
+    --secondary-ultralight-rgb: 245, 245, 245;
+
+    --input-focus-border-color: var(--secondary-darker);
+    --input-focus-box-shadow: 0 0 0 0.25rem rgba(var(--primary-soft-rgb), 0.35);
+
+    --font-family-sans-serif: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", "Liberation Sans", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --border-radius: 0.375rem;
+    --box-shadow-sm: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    --box-shadow: 0 .5rem 1rem rgba(0, 0, 0, .15);
+}
+
+/* ==========================================================================
+   2. Sobrescritas de Componentes Bootstrap
+   ========================================================================== */
+
+/* --- a --- */
+a {
+    color: var(--primary-dark);
+    text-decoration: none;
+}
+a:hover {
+    color: var(--primary-soft);
+    text-decoration: none;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* --- form.floating ---*/
+.form-floating > label {
+    color: #000;
+}
+.form-floating > .form-control:focus ~ label,
+.form-floating > .form-control:not(:placeholder-shown) ~ label,
+.form-floating > .form-select ~ label {
+    color: var(--primary-soft);
+}
+
+.form-control {
+    border-radius: var(--border-radius);
+    border: 1px solid var(--secondary-light);
+    border-radius: var(--border-radius);
+}
+.form-control:focus {
+    color: inherit;
+    border-color: var(--primary-medium);
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary-medium-rgb), 0.25);
+}
+
+/* --- Componentes do form --- */
+.form-check-input {
+  border-color: var(--primary-dark);
+}
+.form-check-input:not(:checked)::before {
+  background-color: var(--secondary) !important;
+}
+.form-check-input:checked {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  box-shadow: none;
+}
+.form-check-input:checked:focus {
+  background-color: var(--primary-dark);
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 0.15rem rgba(var(--primary-medium-rgb), 0.5);
+}
+.form-check-input:focus {
+  border-color: var(--primary-dark);
+  box-shadow: 0 0 0 0.15rem rgba(var(--primary-medium-rgb), 0.5);
+}
+
+/* --- btn-primary ---*/
+.btn-primary {
+    color: #fff;
+    background-color: var(--primary-dark);
+    border-color: var(--primary-dark);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-primary:hover {
+    color: #000;
+    background-color: var(--primary-soft);
+    border-color: var(--primary-soft);
+}
+.btn-primary:focus, .btn-primary.focus {
+    color: #000;
+    background-color: var(--primary-soft);
+    border-color: var(--primary-soft);
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary-medium-rgb), 0.5);
+    outline: 0;
+}
+.btn-primary:active, .btn-primary.active,
+.show > .btn-primary.dropdown-toggle {
+    color: #fff;
+    background-color: var(--primary-darker) !important;
+    border-color: var(--primary-darker) !important;
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary-darker-rgb), 0.5);
+    outline: 0;
+}
+.btn-primary:disabled, .btn-primary.disabled {
+    color: #fff;
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+    opacity: 0.65;
+}
+
+/* --- btn-secondary ---*/
+.btn-secondary {
+    color: #fff;
+    background-color: var(--secondary-darker);
+    border-color: var(--secondary-darker);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-secondary:hover {
+    color: #000;
+    background-color: var(--secondary-light);
+    border-color: var(--secondary-light);
+}
+.btn-secondary:focus, .btn-secondary.focus {
+    color: #000;
+    background-color: var(--secondary-soft);
+    border-color: var(--secondary-soft);
+    box-shadow: 0 0 0 0.25rem rgba(var(--secondary-medium-rgb), 0.5);
+    outline: 0;
+}
+.btn-secondary:active, .btn-secondary.active,
+.show > .btn-secondary.dropdown-toggle {
+    color: #fff;
+    background-color: var(--secondary-darker) !important;
+    border-color: var(--secondary-darker) !important;
+    box-shadow: 0 0 0 0.25rem rgba(var(--secondary-darker-rgb), 0.5);
+    outline: 0;
+}
+.btn-secondary:disabled, .btn-secondary.disabled {
+    color: #fff;
+    background-color: var(--secondary-light);
+    border-color: var(--secondary-light);
+    opacity: 0.65;
+}
+
+/* --- btn-outline-secondary --- */
+.btn-outline-secondary {
+    color: var(--secondary-darker);
+    border-color: var(--secondary-darker);
+    background-color: transparent;
+}
+.btn-outline-secondary:hover,
+.btn-outline-secondary:focus {
+    color: #fff;
+    background-color: var(--secondary-darker) !important;
+    border-color: var(--secondary-darker) !important; 
+}
+.btn:disabled,
+.btn.disabled {
+    color: var(--secondary-medium) !important;
+    background-color: var(--secondary-ultralight) !important;
+    border-color: var(--secondary-light) !important;   
+    opacity: 0.65 !important;                          
+    pointer-events: none !important;      
+}
+
+/* --- dropdown-item --- */
+.dropdown-item:hover {
+    color: #fff;
+    background-color: var(--primary-dark);
+}
+.dropdown-item:active {
+    color: #fff;
+    background-color: var(--primary-dark);
+}
+
+/* --- form-select --- */
+.form-select:focus {
+    border-color: var(--primary-dark);
+    box-shadow: 0 0 0 0.25rem rgba(var(--primary-medium-rgb), 0.3);
+}
+
+/* --- table --- */
+.table > thead.table-light th {
+    background-color: var(--primary-ultralight);
+    color: var(--primary-darker);
+    border-color: var(--primary-light);
+}
+.table > tbody > tr:nth-child(odd) > * {
+    background-color: var(--secondary-ultralight);
+}
+
+
+/* ==========================================================================
+   3. Componentes utilizados no sistema (Navbar / Sidebar / Footer / Logo)
+   ========================================================================== */
+/* --- logo --- */
+.logo {
+    height: 40px;
+    width: 40px;
+}
+
+/* --- footer --- */
+.footer {
+    color: var(--secondary-ultralight);
+    background-color: var(--primary-darker);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+/* --- navbar --- */
+.navbar {
+    color: var(--secondary-ultralight);
+    background-color: var(--primary-darker);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    font-size:large;
+}
+.navbar .navbar-collapse .navbar-nav.me-auto .nav-item .nav-link:hover {
+    color: #000 !important;
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+    border-radius: 0.375rem;
+}
+
+/* --- sidebar --- */
+.btn-sidebar {
+    color: #fff;
+    background-color: var(--primary-darker);
+    border-color: var(--primary-darker);
+    transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.btn-sidebar:hover {
+    color: #000;
+    background-color: var(--primary-light);
+    border-color: var(--primary-light);
+}
+.btn-sidebar:focus, .btn-sidebar.focus {
+    color: #fff;
+    background-color: var(--primary-darker);
+    border-color: var(--primary-darker);
+    outline: 0;
+}
+.btn-sidebar:active, .btn-sidebar.active,
+.show > .btn-sidebar.dropdown-toggle {
+    color: #fff;
+    background-color: var(--primary-darker) !important;
+    border-color: var(--primary-darker) !important;
+    outline: 0;
+}
+
+.offcanvas-start {
+    max-width: 250px;
+}
+.offcanvas-header .offcanvas-title {
+    color: var(--primary-dark);
+}
+
+.offcanvas-body .nav-link {
+    color: var(--primary-dark);
+}
+.offcanvas-body .nav-link:hover {
+    color: var(--primary-soft);
+}
+
+/* ==========================================================================
+   4. Responsividade em telas menores
+   ========================================================================== */
+
+   @media (min-width: 992px) { /* Breakpoint lg do Bootstrap */
+    .form-check-inline-lg {
+        display: inline-block;
+    }
+    .form-check-inline-lg + .form-check-inline-lg {
+        margin-left: .5rem; 
+    }
+    .form-check-inline-lg .form-check-label {
+        padding-left: 0.25rem; 
+    }
+}
+
+/* ==========================================================================
+   5. Estilos Adicionais (Ex: Preview de Tema na Navbar)
+   ========================================================================== */
+
+.theme-preview-circle {
+    display: inline-block;
+    width: 16px;          
+    height: 16px;         
+    border-radius: 50%;   
+    flex-shrink: 0;
+    box-sizing: border-box;
+}
+.dropdown-menu li form.d-block {
+    margin: 0; 
+    padding: 0; 
+}
+.dropdown-menu li form.d-block .dropdown-item {
+    width: 100%;
+    text-align: left;
+}
+
+/* ==========================================================================
+   6. Estilos para Páginas de Detalhe (Reutilizáveis)
+   ========================================================================== */
+
+.detail-page-header {
+    background-color: var(--primary-darker);
+    color: var(--secondary-ultralight);
+}
+.detail-page-header h1,
+.detail-page-header .h1,
+.detail-page-header h2,
+.detail-page-header .h2,
+.detail-page-header h3,
+.detail-page-header .h3,
+.detail-page-header h4,
+.detail-page-header .h4,
+.detail-page-header h5,
+.detail-page-header .h5,
+.detail-page-header h6,
+.detail-page-header .h6 {
+    color: inherit; 
+    margin-bottom: 0; 
+}
+.detail-page-header .btn {
+    color: var(--secondary-ultralight);
+    border-color: var(--primary-light);
+}
+.detail-page-header .btn:hover {
+    color: var(--primary-darker);
+    background-color: var(--secondary-ultralight);
+    border-color: var(--secondary-ultralight);
+}
+.detail-section {
+    margin-bottom: 1.5rem;
+}
+.detail-section-header {
+    border-bottom: 1px solid var(--secondary-light);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1rem;
+    color: var(--primary-dark);
+}
+.detail-section-header h2,
+.detail-section-header .h5 {
+    color: inherit;
+    margin-bottom: 0;
+}
+.detail-section-body {
+    background-color: var(--secondary-ultralight);
+    border: 1px solid var(--secondary-light);
+    padding: 1rem;
+    border-radius: var(--border-radius);
+}
+.info-item {
+    margin-bottom: 0.5rem;
+}
+.info-item .info-label {
+    font-weight: 600;
+    color: var(--primary-dark);
+    display: block;
+    margin-bottom: 0.15rem;
+}
+.info-item .info-value {
+    color: #000;
+    word-break: break-word;
+}
+
+/* ==========================================================================
+   7. Estilos para Formulários e Abas (Reutilizáveis)
+   ========================================================================== */
+
+/* --- Card de Formulário --- */
+.form-card {
+}
+.form-card .card-header {
+    background-color: var(--primary-darker);
+    color: var(--secondary-ultralight);
+    border-bottom: 1px solid var(--primary-dark);
+}
+.form-card .card-header h1,
+.form-card .card-header .h1,
+.form-card .card-header h2,
+.form-card .card-header .h2,
+.form-card .card-header h3,
+.form-card .card-header .h3,
+.form-card .card-header h4,
+.form-card .card-header .h4 {
+    color: inherit;
+    margin-bottom: 0;
+}
+
+/* --- Abas de Formulário --- */
+.form-tabs .nav-link {
+    color: var(--primary-dark);
+    border-color: transparent transparent var(--secondary-light); 
+}
+.form-tabs .nav-link:hover,
+.form-tabs .nav-link:focus {
+    border-color: transparent transparent var(--primary-soft);
+    color: var(--primary-soft);
+}
+.form-tabs .nav-link.active {
+    color: var(--primary-darker);
+    background-color: var(--secondary-ultralight);
+    border-color: var(--primary-medium) var(--primary-medium) transparent;
+    font-weight: 600;
+}
+.form-tab-content {
+    border: 1px solid var(--secondary-light);
+    border-top: 0;
+}
+
+/* --- Botões em grupos de input (ex: busca CEP) --- */
+.input-group .btn {
+    background-color: var(--secondary-light);
+    border-color: var(--secondary-light);
+    color: var(--primary-dark);
+}
+.input-group .btn:hover {
+    background-color: var(--secondary-medium);
+    border-color: var(--secondary-medium);
+}
+.form-text { /* Para texto de ajuda/muted */
+    color: var(--secondary-dark);
+}

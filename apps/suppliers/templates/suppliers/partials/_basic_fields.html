@@ -1,0 +1,117 @@
+<div class="row g-3 mb-3">
+    <!-- Tipo de Fornecedor -->
+    <div class="col-md-3">
+        <div class="form-floating">
+            <select class="form-select supplier-type-select {% if form.supplier_type.errors %}is-invalid{% endif %}"
+                    id="{{ form.supplier_type.id_for_label }}"
+                    name="{{ form.supplier_type.html_name }}"
+                    data-action="supplier-type-change">
+                {% for value, text in form.supplier_type.field.choices %}
+                    <option value="{{ value }}" {% if form.supplier_type.value|stringformat:"s" == value|stringformat:"s" %}selected{% endif %}>
+                        {{ text }}
+                    </option>
+                {% endfor %}
+            </select>
+            <label for="{{ form.supplier_type.id_for_label }}">
+                {{ form.supplier_type.label }}
+                {% if form.supplier_type.field.required %}<span class="text-danger">*</span>{% endif %}
+            </label>
+        </div>
+        {% for error in form.supplier_type.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+
+    <!-- Razão Social/Nome Completo -->
+    <div class="col-md-5">
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.full_name.errors %}is-invalid{% endif %}"
+                   id="{{ form.full_name.id_for_label }}"
+                   name="{{ form.full_name.html_name }}"
+                   placeholder=" "
+                   value="{{ form.full_name.value|default_if_none:'' }}"
+                   maxlength="{{ form.full_name.field.max_length|default:100 }}">
+            <label for="{{ form.full_name.id_for_label }}">
+                {{ form.full_name.label }}
+                {% if form.full_name.field.required %}<span class="text-danger">*</span>{% endif %}
+            </label>
+        </div>
+        {% for error in form.full_name.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+        {% if form.full_name.help_text %}<small class="form-text text-muted">{{ form.full_name.help_text }}</small>{% endif %}
+    </div>
+
+    <!-- Nome Fantasia/Apelido -->
+    <div class="col-md-4">
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.preferred_name.errors %}is-invalid{% endif %}"
+                   id="{{ form.preferred_name.id_for_label }}"
+                   name="{{ form.preferred_name.html_name }}"
+                   placeholder=" "
+                   value="{{ form.preferred_name.value|default_if_none:'' }}"
+                   maxlength="{{ form.preferred_name.field.max_length|default:50 }}">
+            <label for="{{ form.preferred_name.id_for_label }}">
+                {{ form.preferred_name.label }}
+                {% if form.preferred_name.field.required %}<span class="text-danger">*</span>{% endif %}
+            </label>
+        </div>
+        {% for error in form.preferred_name.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+</div>
+
+<div class="row g-3 mb-3">
+    <!-- CNPJ/CPF -->
+    <div class="col-md-4">
+        <div class="input-group {% if form.tax_id.errors %}is-invalid{% endif %}">
+            <div class="form-floating flex-grow-1">
+                <input type="text"
+                       class="form-control tax-id-mask {% if form.tax_id.errors %}is-invalid{% endif %}"
+                       id="{{ form.tax_id.id_for_label }}"
+                       name="{{ form.tax_id.html_name }}"
+                       placeholder=" "
+                       value="{{ form.tax_id.value|default_if_none:'' }}"
+                       data-action="document-input"
+                       pattern="{{ form.tax_id.field.widget.attrs.pattern|default:'[\\d.\\-/]*' }}"
+                       inputmode="{{ form.tax_id.field.widget.attrs.inputmode|default:'text' }}">
+                <label for="{{ form.tax_id.id_for_label }}">
+                    {{ form.tax_id.label }}
+                    {% if form.tax_id.field.required %}<span class="text-danger">*</span>{% endif %}
+                </label>
+            </div>
+            <button class="btn btn-outline-secondary" type="button" id="search-tax-id" data-url="{% url 'suppliers:search_cnpj' %}" disabled>
+                <i class="bi bi-search"></i>
+            </button>
+        </div>
+        {% for error in form.tax_id.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+        <small class="form-text text-muted">{{ form.tax_id.help_text|default:"Somente números." }}</small>
+    </div>
+
+    <!-- Inscrição Estadual -->
+    <div class="col-md-4" id="state-registration-field-div" {% if form.instance.supplier_type == "IND" or form.initial.supplier_type == "IND" %}style="display:none;"{% endif %}>
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.state_registration.errors %}is-invalid{% endif %}"
+                   id="{{ form.state_registration.id_for_label }}"
+                   name="{{ form.state_registration.html_name }}"
+                   placeholder=" "
+                   value="{{ form.state_registration.value|default_if_none:'' }}"
+                   maxlength="{{ form.state_registration.field.max_length|default:20 }}">
+            <label for="{{ form.state_registration.id_for_label }}">{{ form.state_registration.label }}</label>
+        </div>
+        {% for error in form.state_registration.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+
+    <!-- Inscrição Municipal -->
+    <div class="col-md-4" id="municipal-registration-field-div" {% if form.instance.supplier_type == "IND" or form.initial.supplier_type == "IND" %}style="display:none;"{% endif %}>
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.municipal_registration.errors %}is-invalid{% endif %}"
+                   id="{{ form.municipal_registration.id_for_label }}"
+                   name="{{ form.municipal_registration.html_name }}"
+                   placeholder=" "
+                   value="{{ form.municipal_registration.value|default_if_none:'' }}"
+                   maxlength="{{ form.municipal_registration.field.max_length|default:20 }}">
+            <label for="{{ form.municipal_registration.id_for_label }}">{{ form.municipal_registration.label }}</label>
+        </div>
+        {% for error in form.municipal_registration.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+</div>

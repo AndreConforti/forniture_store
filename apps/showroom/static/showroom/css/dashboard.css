@@ -1,0 +1,94 @@
+/* Efeito hover para os cards
+.summary-card {
+    transition: all 0.3s ease;
+}
+
+.summary-card:hover {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-3px);
+}
+
+a {
+    color: var(--primary-dark);
+}
+*/
+
+.dashboard-welcome-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 70vh; /* Adjust as needed to fill available space */
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--secondary-ultralight, #f8f9fa); /* Use theme color with fallback */
+    border-radius: var(--border-radius, 0.375rem);
+    margin-top: 1rem; /* Optional: space from any potential top elements */
+    box-shadow: var(--box-shadow, 0 .5rem 1rem rgba(0,0,0,.15));
+}
+
+.dashboard-welcome-container .welcome-icon {
+    font-size: 4rem; /* Adjust size of the icon */
+    color: var(--primary-medium, #093a6a); /* Use theme color */
+    margin-bottom: 1.5rem;
+}
+
+.dashboard-welcome-container h1 {
+    color: var(--primary-darker, #021223); /* Use theme color */
+    margin-bottom: 1rem;
+    font-size: 2.25rem; /* Slightly larger heading */
+}
+
+.dashboard-welcome-container .lead {
+    color: var(--primary-dark, #042345); /* Use theme color */
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    max-width: 700px; /* Keep text readable */
+}
+
+.dashboard-welcome-container p {
+    color: var(--secondary-darker, #4A4A4A); /* Use theme color */
+    margin-bottom: 1rem;
+    max-width: 650px; /* Keep text readable */
+    line-height: 1.7;
+}
+
+.dashboard-welcome-container .future-features {
+    margin-top: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: left; 
+    display: inline-block;
+}
+
+.dashboard-welcome-container .future-features h5 {
+    color: var(--primary-medium, #093a6a);
+    margin-bottom: 0.75rem;
+    text-align: center;
+}
+
+.dashboard-welcome-container .future-features ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.dashboard-welcome-container .future-features li {
+    padding: 0.3rem 0;
+    color: var(--primary-dark, #042345);
+}
+
+.dashboard-welcome-container .future-features li .bi {
+    margin-right: 0.75rem;
+    color: var(--primary-soft, #1e5e9ab6);
+    font-size: 1.1rem;
+}
+
+.dashboard-welcome-container .cta-message {
+    font-weight: 500;
+    color: var(--primary-dark, #042345);
+}
+
+/* Optional: if you want a logo specific to this page */
+.welcome-logo {
+    max-height: 80px; /* Adjust as needed */
+    margin-bottom: 1.5rem;
+}

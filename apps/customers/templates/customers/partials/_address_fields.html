@@ -1,0 +1,164 @@
+<div class="row g-3 mb-4">
+  <!-- CEP -->
+  <div class="col-md-3">
+    <div class="input-group {% if form.zip_code.errors %}is-invalid{% endif %}">
+      <div class="form-floating">
+        <input
+          type="text"
+          class="form-control {% if form.zip_code.errors %}is-invalid{% endif %}"
+          id="{{ form.zip_code.id_for_label }}"
+          name="{{ form.zip_code.html_name }}"
+          placeholder=" "
+          value="{{ form.zip_code.value|default_if_none:'' }}"
+          data-mask="00000-000"
+          data-action="cep-lookup"
+        />
+        <label for="{{ form.zip_code.id_for_label }}">
+          {{ form.zip_code.label }}
+        </label>
+      </div>
+      <button
+        class="btn btn-outline-secondary"
+        type="button"
+        id="search-zip-code"
+        data-url="{% url 'customers:search_zip_code' %}"
+        disabled
+      >
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+    {% if form.zip_code.errors %}
+    <div class="invalid-feedback d-block">
+      {{ form.zip_code.errors|join:", " }}
+    </div>
+    {% endif %}
+    <small class="form-text">Formato: 00000-000</small>
+  </div>
+
+  <!-- Logradouro -->
+  <div class="col-md-6">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control {% if form.street.errors %}is-invalid{% endif %}"
+        id="{{ form.street.id_for_label }}"
+        name="{{ form.street.html_name }}"
+        placeholder=" "
+        value="{{ form.street.value|default_if_none:'' }}"
+      />
+      <label for="{{ form.street.id_for_label }}">
+        {{ form.street.label }}
+      </label>
+    </div>
+    {% if form.street.errors %}
+    <div class="invalid-feedback d-block">
+      {{ form.street.errors|join:", " }}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Número -->
+  <div class="col-md-3">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control {% if form.number.errors %}is-invalid{% endif %}"
+        id="{{ form.number.id_for_label }}"
+        name="{{ form.number.html_name }}"
+        placeholder=" "
+        value="{{ form.number.value|default_if_none:'' }}"
+      />
+      <label for="{{ form.number.id_for_label }}">
+        {{ form.number.label }}
+      </label>
+    </div>
+    {% if form.number.errors %}
+    <div class="invalid-feedback d-block">
+      {{ form.number.errors|join:", " }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row g-3 mb-4">
+  <!-- Complemento -->
+  <div class="col-md-4">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control {% if form.complement.errors %}is-invalid{% endif %}"
+        id="{{ form.complement.id_for_label }}"
+        name="{{ form.complement.html_name }}"
+        placeholder=" "
+        value="{{ form.complement.value|default_if_none:'' }}"
+      />
+      <label for="{{ form.complement.id_for_label }}">
+        {{ form.complement.label }}
+      </label>
+    </div>
+    {% if form.complement.errors %}
+    <div class="invalid-feedback d-block">
+      {{ form.complement.errors|join:", " }}
+    </div>
+    {% endif %}
+  </div>
+
+  <!-- Bairro -->
+  <div class="col-md-4">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control {% if form.neighborhood.errors %}is-invalid{% endif %}"
+        id="{{ form.neighborhood.id_for_label }}"
+        name="{{ form.neighborhood.html_name }}"
+        placeholder=" "
+        value="{{ form.neighborhood.value|default_if_none:'' }}"
+      />
+      <label for="{{ form.neighborhood.id_for_label }}">
+        {{ form.neighborhood.label }}
+      </label>
+    </div>
+    {% if form.neighborhood.errors %}
+    <div class="invalid-feedback d-block">
+      {{ form.neighborhood.errors|join:", " }}
+    </div>
+    {% endif %}
+  </div>
+</div>
+
+<div class="row g-3">
+  <!-- Cidade -->
+  <div class="col-md-4">
+    <div class="form-floating">
+      <input
+        type="text"
+        class="form-control {% if form.city.errors %}is-invalid{% endif %}"
+        id="{{ form.city.id_for_label }}"
+        name="{{ form.city.html_name }}"
+        placeholder=" "
+        value="{{ form.city.value|default_if_none:'' }}"
+      />
+      <label for="{{ form.city.id_for_label }}"> {{ form.city.label }} </label>
+    </div>
+    {% if form.city.errors %}<div class="invalid-feedback d-block">{{ form.city.errors|join:", " }}</div>{% endif %}
+  </div>
+
+  <!-- UF -->
+  <div class="col-md-2">
+    <div class="form-floating">
+      <select class="form-select {% if form.state.errors %}is-invalid{% endif %}"
+              id="{{ form.state.id_for_label }}"
+              name="{{ form.state.html_name }}">
+          {% for value, text in form.state.field.choices %}
+              <option value="{{ value }}" {% if form.state.value|stringformat:"s" == value|stringformat:"s" %}selected{% endif %}>
+                  {{ text }}
+              </option>
+          {% endfor %}
+      </select>
+      <label for="{{ form.state.id_for_label }}">
+        {{ form.state.label }}
+      </label>
+    </div>
+    {% if form.state.errors %}<div class="invalid-feedback d-block">{{ form.state.errors|join:", " }}</div>{% endif %}
+  </div>
+</div>

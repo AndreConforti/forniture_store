@@ -1,0 +1,123 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Acesso e Personalização - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Acesso ao Sistema e Personalização</h1>
+
+  <section>
+    <h2><i class="bi bi-door-open me-2"></i>Fazendo Login</h2>
+    <p>
+      Para acessar o sistema, você precisará de um nome de usuário e senha
+      fornecidos pelo administrador.
+    </p>
+    <ol>
+      <li>Abra o sistema no seu navegador. Você verá a tela de login.</li>
+      <img
+        src="{% static 'docs/img/placeholder_login_screen.png' %}"
+        alt="Tela de Login"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>No campo "Usuário", digite seu nome de usuário.</li>
+      <li>No campo "Senha", digite sua senha.</li>
+      <li>Clique no botão <strong>"Entrar"</strong>.</li>
+    </ol>
+    <p>
+      <strong>Se os dados estiverem corretos:</strong> Você será redirecionado
+      para o Painel Principal (Dashboard) do sistema.
+    </p>
+    <p>
+      <strong>Se os dados estiverem incorretos:</strong> Uma mensagem de erro
+      aparecerá na tela de login, como "Usuário ou senha incorretos!". Verifique
+      seus dados e tente novamente. Se o problema persistir, consulte a seção
+      <a href="{% url 'docs:password_recovery' %}">Recuperação de Senha</a> ou
+      contate o administrador.
+    </p>
+    <img
+      src="{% static 'docs/img/placeholder_login_error.png' %}"
+      alt="Erro no Login"
+      class="img-fluid screenshot my-2"
+    />
+  </section>
+
+  <section>
+    <h2><i class="bi bi-palette me-2"></i>Alterando o Tema Visual</h2>
+    <p>
+      Você pode personalizar a aparência do sistema escolhendo um tema visual de
+      sua preferência.
+    </p>
+    <ol>
+      <li>
+        Após fazer login, localize seu nome de usuário no canto superior direito
+        da tela (na barra de navegação).
+      </li>
+      <li>Clique no seu nome para abrir um menu suspenso.</li>
+      <img
+        src="{% static 'docs/img/placeholder_navbar_user_menu.png' %}"
+        alt="Menu de Usuário na Navbar"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>
+        Na seção "Escolha seu Tema", você verá uma lista de temas disponíveis,
+        cada um com uma pequena amostra de cor.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_theme_options.png' %}"
+        alt="Opções de Tema"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>
+        Clique no nome do tema que deseja aplicar. O sistema irá recarregar e
+        aplicar o novo tema instantaneamente.
+      </li>
+    </ol>
+    <p>Você pode alterar o tema quantas vezes quiser.</p>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-box-arrow-left me-2"></i>Saindo do Sistema (Logout)</h2>
+    <p>
+      Quando terminar de usar o sistema, é importante fazer logout para garantir a
+      segurança dos seus dados.
+    </p>
+    <ol>
+      <li>
+        Clique no seu nome de usuário no canto superior direito da tela para abrir
+        o menu suspenso.
+      </li>
+      <li>Clique na opção <strong>"Sair"</strong>.</li>
+      <img
+        src="{% static 'docs/img/placeholder_logout_button.png' %}"
+        alt="Botão Sair"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>
+        Uma janela de confirmação aparecerá perguntando "Tem certeza que deseja
+        sair do sistema?".
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_logout_modal.png' %}"
+        alt="Modal de Confirmação de Logout"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>Clique em <strong>"Confirmar"</strong>.</li>
+      <li>
+        Você será desconectado e verá uma mensagem de confirmação. Para acessar o
+        sistema novamente, você precisará fazer login.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_logout_confirmation_page.png' %}"
+        alt="Página de Logout Efetuado"
+        class="img-fluid screenshot my-2"
+      />
+    </ol>
+  </section>
+{% endblock tutorial_page_content %}

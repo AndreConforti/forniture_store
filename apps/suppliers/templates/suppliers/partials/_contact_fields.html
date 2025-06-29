@@ -1,0 +1,45 @@
+<div class="row g-3 mb-3">
+    <div class="col-md-4">
+        <div class="form-floating">
+            <input type="tel"
+                   class="form-control phone-mask {% if form.phone.errors %}is-invalid{% endif %}"
+                   id="{{ form.phone.id_for_label }}"
+                   name="{{ form.phone.html_name }}"
+                   placeholder="(00) 00000-0000"
+                   value="{{ form.phone.value|default_if_none:'' }}"
+                   maxlength="15">
+            <label for="{{ form.phone.id_for_label }}">{{ form.phone.label }}</label>
+        </div>
+        {% for error in form.phone.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+
+    <div class="col-md-8">
+        <div class="form-floating">
+            <input type="email"
+                   class="form-control {% if form.email.errors %}is-invalid{% endif %}"
+                   id="{{ form.email.id_for_label }}"
+                   name="{{ form.email.html_name }}"
+                   placeholder="exemplo@dominio.com"
+                   value="{{ form.email.value|default_if_none:'' }}"
+                   maxlength="{{ form.email.field.max_length|default:254 }}">
+            <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+        </div>
+        {% for error in form.email.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+</div>
+
+<div class="row g-3">
+    <div class="col-12">
+        <div class="form-floating">
+            <input type="text"
+                   class="form-control {% if form.contact_person.errors %}is-invalid{% endif %}"
+                   id="{{ form.contact_person.id_for_label }}"
+                   name="{{ form.contact_person.html_name }}"
+                   placeholder=" "
+                   value="{{ form.contact_person.value|default_if_none:'' }}"
+                   maxlength="{{ form.contact_person.field.max_length|default:100 }}">
+            <label for="{{ form.contact_person.id_for_label }}">{{ form.contact_person.label }}</label>
+        </div>
+        {% for error in form.contact_person.errors %}<div class="invalid-feedback d-block">{{ error }}</div>{% endfor %}
+    </div>
+</div>

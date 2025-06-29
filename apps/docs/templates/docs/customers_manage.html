@@ -1,0 +1,177 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Consultar e Editar Clientes - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Consultando e Editando Clientes</h1>
+  <p class="lead">
+    Aprenda como encontrar clientes já cadastrados, visualizar seus detalhes e
+    atualizar suas informações quando necessário.
+  </p>
+
+  <section id="consultar">
+    <h2>
+      <i class="bi bi-search me-2"></i>Consultando Clientes (Lista de Clientes)
+    </h2>
+    <p>
+      A tela de "Listar Clientes" é onde você pode ver todos os clientes
+      cadastrados e procurar por clientes específicos.
+    </p>
+    <ol>
+      <li>
+        Para acessar, clique em "Clientes" na barra de navegação superior ou, no
+        menu lateral, expanda "Clientes" e clique em "Listar Clientes".
+      </li>
+      <li>Você verá uma tabela com os clientes.</li>
+      <img
+        src="{% static 'docs/img/placeholder_customer_list.png' %}"
+        alt="Lista de Clientes"
+        class="img-fluid screenshot my-2"
+      />
+    </ol>
+
+    <h3>Filtrando e Buscando Clientes</h3>
+    <p>
+      Para encontrar um cliente específico ou um grupo de clientes, você pode usar
+      os filtros no topo da página:
+    </p>
+    <img
+      src="{% static 'docs/img/placeholder_customer_list_filters.png' %}"
+      alt="Filtros da Lista de Clientes"
+      class="img-fluid screenshot my-2"
+    />
+    <ul>
+      <li>
+        <strong>Campo de Busca:</strong> Digite parte do nome, CPF/CNPJ (somente
+        números) ou e-mail do cliente que você procura.
+      </li>
+      <li>
+        <strong>Tipo de Cliente:</strong> Selecione "Pessoa Física", "Pessoa
+        Jurídica" ou "Todos os Tipos" para filtrar pela natureza do cliente.
+      </li>
+      <li>
+        Após definir seus critérios, clique no botão <strong>"Buscar"</strong>. A
+        lista será atualizada com os resultados.
+      </li>
+    </ul>
+    <img
+      src="{% static 'docs/img/placeholder_customer_list_filtered_example.png' %}"
+      alt="Lista de Clientes Filtrada"
+      class="img-fluid screenshot my-2"
+    />
+
+    <h3>Informações na Lista</h3>
+    <p>A tabela de clientes exibe as seguintes informações principais:</p>
+    <ul>
+      <li>
+        <strong>Nome:</strong> Nome completo / Razão Social (ou Apelido / Nome
+        Fantasia se disponível). Clicar aqui leva aos detalhes do cliente.
+      </li>
+      <li><strong>CPF/CNPJ:</strong> Documento formatado.</li>
+      <li><strong>Tipo:</strong> "Pessoa Física" ou "Pessoa Jurídica".</li>
+      <li><strong>Telefone:</strong> Telefone formatado.</li>
+      <li><strong>E-mail.</strong></li>
+    </ul>
+  </section>
+
+  <section id="detalhar">
+    <h2><i class="bi bi-eye me-2"></i>Visualizando Detalhes do Cliente</h2>
+    <ol>
+      <li>
+        Na <a href="#consultar">Lista de Clientes</a>, clique no nome do cliente
+        cujos detalhes você deseja ver.
+      </li>
+      <li>Você será levado para a tela de "Detalhes do Cliente".</li>
+      <img
+        src="{% static 'docs/img/placeholder_customer_detail.png' %}"
+        alt="Detalhes do Cliente"
+        class="img-fluid screenshot my-2"
+      />
+      <p>
+        Esta página exibe todas as informações cadastradas para o cliente,
+        organizadas em seções:
+      </p>
+      <ul>
+        <li>
+          <strong>Dados Básicos:</strong> Tipo, Nome/Razão Social,
+          Apelido/Fantasia, CPF/CNPJ, Telefone, E-mail, Status (Ativo/Inativo),
+          VIP e Data de Cadastro.
+        </li>
+        <li>
+          <strong>Endereço:</strong> Se cadastrado, mostra Logradouro, Número,
+          Complemento, CEP, Bairro, Cidade e UF.
+        </li>
+        <li>
+          <strong>Informações Adicionais:</strong> Profissão, Interesses e
+          Observações.
+        </li>
+      </ul>
+      <li>No rodapé da página de detalhes, você encontrará os botões:</li>
+      <ul>
+        <li>
+          <strong>"Editar":</strong> Leva ao formulário para alterar os dados
+          deste cliente.
+        </li>
+        <li><strong>"Ver Todos":</strong> Retorna para a lista de clientes.</li>
+      </ul>
+      <img
+        src="{% static 'docs/img/placeholder_customer_detail_buttons.png' %}"
+        alt="Botões na Tela de Detalhes"
+        class="img-fluid screenshot my-2"
+        style="max-width: 300px"
+      />
+    </ol>
+  </section>
+
+  <section id="editar">
+    <h2><i class="bi bi-pencil-square me-2"></i>Editando um Cliente</h2>
+    <ol>
+      <li>
+        Na tela de <a href="#detalhar">Detalhes do Cliente</a>, clique no botão
+        <strong>"Editar"</strong>.
+      </li>
+      <li>
+        Você será levado ao formulário de edição, que é idêntico ao formulário de
+        cadastro, mas já virá preenchido com os dados atuais do cliente.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_customer_form_edit.png' %}"
+        alt="Formulário de Edição de Cliente"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>
+        Modifique os campos que desejar nas abas "Dados Básicos", "Endereço" ou
+        "Adicionais".
+      </li>
+      <li>
+        A lógica de busca de CNPJ e CEP funciona da mesma forma que no cadastro.
+        Se você alterar o CNPJ, pode tentar buscar os dados novamente. Se alterar
+        o CEP, pode buscar o novo endereço.
+      </li>
+      <li>
+        Após fazer as alterações, clique no botão
+        <strong>"Salvar Cliente"</strong> no final do formulário.
+      </li>
+      <li>Se houver erros, eles serão exibidos. Corrija e salve novamente.</li>
+      <li>
+        Se tudo estiver correto, as informações do cliente serão atualizadas e
+        você será redirecionado para a
+        <a href="#consultar">Lista de Clientes</a> com uma mensagem de sucesso.
+      </li>
+    </ol>
+    <p>
+      Para descartar as alterações sem salvar, clique em
+      <strong>"Cancelar"</strong>.
+    </p>
+  </section>
+
+  <div class="d-flex justify-content-start mt-4">
+    <a href="{% url 'docs:customers_create' %}" class="btn btn-outline-secondary"
+      ><i class="bi bi-arrow-left-short"></i> Voltar: Cadastrar Cliente</a
+    >
+  </div>
+{% endblock tutorial_page_content %}

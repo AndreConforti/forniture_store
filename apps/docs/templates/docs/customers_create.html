@@ -1,0 +1,248 @@
+{% extends "docs/docs_base.html" %} 
+{% load static %} 
+
+{% block title %}
+  Cadastrar Novo Cliente - {{ block.super }}
+{% endblock %} 
+
+{% block tutorial_page_content %}
+  <h1 class="h2">Cadastrando um Novo Cliente</h1>
+  <p class="lead">
+    Siga estes passos para adicionar um novo cliente ao sistema. Manter um
+    cadastro completo ajuda a entender melhor seus clientes e a oferecer um
+    atendimento personalizado.
+  </p>
+
+  <section>
+    <h2>
+      <i class="bi bi-input-cursor-text me-2"></i>Acessando o Formulário de
+      Cadastro
+    </h2>
+    <p>Você pode iniciar o cadastro de um novo cliente de duas formas:</p>
+    <ul>
+      <li>
+        Na tela de
+        <a href="{% url 'docs:customers_manage' %}#consultar"
+          >Listagem de Clientes</a
+        >, clique no botão <strong>"Novo Cliente"</strong> no canto superior
+        direito.
+      </li>
+      <li>
+        No menu lateral (sidebar), expanda a seção "Clientes" e clique em
+        <strong>"Cadastrar Cliente"</strong>.
+      </li>
+    </ul>
+    <p>Ambas as opções levarão você ao formulário de cadastro de cliente.</p>
+    <img
+      src="{% static 'docs/img/placeholder_customer_form_empty.png' %}"
+      alt="Formulário de Cadastro de Cliente"
+      class="img-fluid screenshot my-2"
+    />
+    <p>
+      O formulário é dividido em três abas para melhor organização:
+      <strong>Dados Básicos</strong>, <strong>Endereço</strong> e
+      <strong>Adicionais</strong>.
+    </p>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-person-vcard me-2"></i>Aba "Dados Básicos"</h2>
+    <p>
+      Esta aba contém as informações principais de identificação e contato do
+      cliente.
+    </p>
+    <img
+      src="{% static 'docs/img/placeholder_customer_form_basic.png' %}"
+      alt="Aba Dados Básicos"
+      class="img-fluid screenshot my-2"
+    />
+
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>Tipo de Cliente <span class="text-danger">*</span>:</strong>
+        Selecione se o cliente é "Pessoa Física" ou "Pessoa Jurídica".
+        <div class="alert alert-warning mt-1 p-2">
+          <small
+            ><i class="bi bi-exclamation-triangle-fill me-1"></i
+            ><strong>Importante:</strong> A escolha do tipo de cliente afeta a
+            validação do campo CPF/CNPJ e habilita/desabilita o botão de busca de
+            dados para CNPJ.</small
+          >
+        </div>
+      </li>
+      <li class="list-group-item">
+        <strong
+          >Nome Completo / Razão Social
+          <span class="text-danger">*</span>:</strong
+        >
+        Digite o nome completo (para Pessoa Física) ou a razão social (para Pessoa
+        Jurídica).
+      </li>
+      <li class="list-group-item">
+        <strong>Apelido / Nome Fantasia:</strong> Campo opcional para um nome mais
+        conhecido ou nome fantasia da empresa.
+      </li>
+      <li class="list-group-item">
+        <strong>CPF/CNPJ <span class="text-danger">*</span>:</strong> Digite
+        apenas os números do documento.
+        <ul>
+          <li>Para <strong>Pessoa Física</strong>, o sistema validará o CPF.</li>
+          <li>
+            Para <strong>Pessoa Jurídica</strong>, o sistema validará o CNPJ. Além
+            disso, um botão de busca (<i class="bi bi-search"></i>) ao lado do
+            campo será habilitado. Ao clicar nele, o sistema tentará buscar
+            automaticamente os dados da empresa (Razão Social, Nome Fantasia,
+            Endereço) e preencher os campos correspondentes no formulário.
+          </li>
+        </ul>
+        <img
+          src="{% static 'docs/img/placeholder_customer_form_taxid_search.png' %}"
+          alt="Busca CNPJ"
+          class="img-fluid screenshot my-1"
+          style="max-width: 400px"
+        />
+      </li>
+      <li class="list-group-item">
+        <strong>Telefone:</strong> Digite o número de telefone do cliente. O
+        sistema aplicará uma máscara automaticamente.
+      </li>
+      <li class="list-group-item">
+        <strong>E-mail:</strong> Digite o endereço de e-mail do cliente.
+      </li>
+    </ul>
+    <p class="form-text">
+      <span class="text-danger">*</span> Campos obrigatórios.
+    </p>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-geo-alt me-2"></i>Aba "Endereço"</h2>
+    <p>Informações sobre a localização do cliente.</p>
+    <img
+      src="{% static 'docs/img/placeholder_customer_form_address.png' %}"
+      alt="Aba Endereço"
+      class="img-fluid screenshot my-2"
+    />
+
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>CEP:</strong> Digite o CEP do cliente (apenas números). O sistema
+        aplicará a máscara (00000-000).
+        <ul>
+          <li>
+            Se o "Tipo de Cliente" for <strong>Pessoa Física</strong>, um botão de
+            busca (<i class="bi bi-search"></i>) ao lado do campo será habilitado.
+            Ao clicar nele, o sistema tentará buscar automaticamente o Logradouro,
+            Bairro, Cidade e UF correspondentes ao CEP.
+          </li>
+          <li>
+            Se os dados do CNPJ foram buscados na aba anterior, o CEP e outros
+            campos de endereço podem já estar preenchidos.
+          </li>
+        </ul>
+        <img
+          src="{% static 'docs/img/placeholder_customer_form_zip_search.png' %}"
+          alt="Busca CEP"
+          class="img-fluid screenshot my-1"
+          style="max-width: 300px"
+        />
+      </li>
+      <li class="list-group-item">
+        <strong>Logradouro:</strong> Nome da rua, avenida, etc.
+      </li>
+      <li class="list-group-item"><strong>Número:</strong> Número do imóvel.</li>
+      <li class="list-group-item">
+        <strong>Complemento:</strong> Apartamento, bloco, casa, etc. (opcional).
+      </li>
+      <li class="list-group-item"><strong>Bairro:</strong> Nome do bairro.</li>
+      <li class="list-group-item"><strong>Cidade:</strong> Nome da cidade.</li>
+      <li class="list-group-item">
+        <strong>UF:</strong> Sigla do estado (ex: SP, RJ).
+      </li>
+    </ul>
+    <div class="alert alert-info mt-2" role="alert">
+      <i class="bi bi-info-circle-fill me-1"></i> Se você não preencher o endereço
+      manualmente e fornecer um CEP válido, o sistema tentará preencher os campos
+      de endereço (Logradouro, Bairro, Cidade, UF) automaticamente ao salvar o
+      cliente.
+    </div>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-info-circle me-2"></i>Aba "Adicionais"</h2>
+    <p>Informações complementares sobre o cliente.</p>
+    <img
+      src="{% static 'docs/img/placeholder_customer_form_additional.png' %}"
+      alt="Aba Adicionais"
+      class="img-fluid screenshot my-2"
+    />
+
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>Profissão:</strong> Profissão do cliente (opcional).
+      </li>
+      <li class="list-group-item">
+        <strong>Cliente VIP:</strong> Marque esta opção se o cliente for
+        considerado VIP (opcional).
+      </li>
+      <li class="list-group-item">
+        <strong>Interesses:</strong> Anote aqui produtos, estilos ou serviços de
+        interesse do cliente (opcional).
+      </li>
+      <li class="list-group-item">
+        <strong>Observações:</strong> Qualquer outra informação relevante sobre o
+        cliente (opcional).
+      </li>
+    </ul>
+  </section>
+
+  <section>
+    <h2><i class="bi bi-check2-circle me-2"></i>Salvando o Cliente</h2>
+    <p>Após preencher todas as informações desejadas, revise os dados.</p>
+    <ol>
+      <li>
+        Clique no botão <strong>"Salvar Cliente"</strong> no final do formulário.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_customer_form_buttons.png' %}"
+        alt="Botões Salvar e Cancelar"
+        class="img-fluid screenshot my-2"
+        style="max-width: 300px"
+      />
+
+      <li>
+        Se houver algum erro de preenchimento (ex: campo obrigatório não
+        preenchido, CPF/CNPJ inválido), mensagens de erro aparecerão indicando o
+        que precisa ser corrigido. Corrija e tente salvar novamente.
+      </li>
+      <img
+        src="{% static 'docs/img/placeholder_customer_form_error_example.png' %}"
+        alt="Erro no Formulário"
+        class="img-fluid screenshot my-2"
+      />
+
+      <li>
+        Se tudo estiver correto, o cliente será salvo e você será redirecionado
+        para a
+        <a href="{% url 'docs:customers_manage' %}#consultar">Lista de Clientes</a
+        >, com uma mensagem de sucesso.
+      </li>
+    </ol>
+    <p>
+      Se desejar descartar as alterações e não salvar o cliente, clique em
+      <strong>"Cancelar"</strong>. Você será redirecionado de volta para a Lista
+      de Clientes.
+    </p>
+  </section>
+
+  <div class="d-flex justify-content-between mt-4">
+    <a
+      href="{% url 'docs:customers_overview' %}"
+      class="btn btn-outline-secondary"
+      ><i class="bi bi-arrow-left-short"></i> Voltar: Visão Geral</a
+    >
+    <a href="{% url 'docs:customers_manage' %}" class="btn btn-primary"
+      >Próximo: Consultar e Editar <i class="bi bi-arrow-right-short"></i
+    ></a>
+  </div>
+{% endblock tutorial_page_content %}

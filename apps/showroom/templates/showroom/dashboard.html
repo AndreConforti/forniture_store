@@ -1,0 +1,54 @@
+{% extends 'base/base_home.html' %}
+{% load static %}
+
+{% block head %}
+    <link rel="stylesheet" href="{% static 'showroom/css/dashboard.css' %}">
+{% endblock %}
+
+{% block title %}Painel Principal{% endblock %}
+
+{% block content %}
+    <div class="dashboard-welcome-container">
+        <h1>Bem-vindo(a) ao Sistema Forniture Store!</h1>
+
+        <p class="lead">
+            Estamos muito felizes em ter você conosco nesta jornada para otimizar a gestão do seu negócio.
+        </p>
+
+        <p>
+            No momento, nosso sistema está em fase inicial de desenvolvimento. Isso significa que estamos construindo
+            as fundações e adicionando funcionalidades essenciais aos poucos. Você já pode explorar a seção de
+            <strong>Clientes</strong> através do menu.
+        </p>
+
+        <div class="future-features">
+            <h5>Em breve, este painel será o seu centro de comando, com:</h5>
+            <ul>
+                <li><i class="bi bi-bar-chart-line-fill"></i> Gráficos e resumos visuais de desempenho</li>
+                <li><i class="bi bi-table"></i> Listagem e acompanhamento de pedidos</li>
+                <li><i class="bi bi-bell-fill"></i> Alertas e notificações importantes</li>
+                <li><i class="bi bi-graph-up-arrow"></i> Relatórios detalhados para tomada de decisão</li>
+                <li><i class="bi bi-tools"></i> E muitas outras ferramentas para facilitar seu dia a dia!</li>
+            </ul>
+        </div>
+
+        <p>
+            Estamos trabalhando com dedicação para trazer todas essas novidades para você o mais rápido possível.
+            Agradecemos sua paciência e compreensão.
+        </p>
+
+        <p class="cta-message">
+            Continue explorando e, em caso de dúvidas, não hesite em consultar a seção de Ajuda!
+        </p>
+    </div>
+    {% comment %} 
+        <div class="dashboard">
+            <!-- Inclui os Cards de Resumo -->
+            {% include 'showroom/includes/_summary_cards.html' %}
+            
+            <!-- Inclui a Tabela de Pedidos -->
+            {% include 'showroom/includes/_recent_orders.html' %}
+        </div> 
+    {% endcomment %}
+
+{% endblock %}
