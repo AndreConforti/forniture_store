@@ -143,11 +143,11 @@ INSTALLED_APPS = [
     "apps.docs",
     "apps.employees",
     "apps.showroom",
-    # 'apps.reports',
+    'apps.reports',
     # 'apps.orders',
     # 'apps.products',
     # 'apps.stock',
-    # 'apps.suppliers',
+    'apps.suppliers',
 ]
 
 
