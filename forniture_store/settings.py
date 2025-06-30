@@ -71,45 +71,59 @@ else:
 
 
 # --- Configuração do Banco de Dados ---
-DB_ENGINE_ENV = os.environ.get('DB_ENGINE', 'django.db.backends.postgresql')
-DB_NAME_ENV = os.environ.get('DB_NAME')
-DB_USER_ENV = os.environ.get('DB_USER')
-DB_PASSWORD_ENV = os.environ.get('DB_PASSWORD')
-DB_HOST_ENV = os.environ.get('DB_HOST', 'localhost')
-DB_PORT_ENV = os.environ.get('DB_PORT', '5432')
+USE_SQLITE = os.environ.get('DJANGO_USE_SQLITE', 'False').lower() in ('true', '1', 't')
 
-# A lógica de verificação de DEBUG e variáveis de produção pode ser mantida ou ajustada
-if not DEBUG and not all([DB_NAME_ENV, DB_USER_ENV, DB_PASSWORD_ENV, DB_HOST_ENV, DB_PORT_ENV]):
-    raise ValueError(
-        "ERRO CRÍTICO DE PRODUÇÃO: As variáveis de ambiente "
-        "DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT não estão completamente definidas no .env."
-    )
-elif DEBUG and not all([DB_NAME_ENV, DB_USER_ENV, DB_PASSWORD_ENV]):
-    print(
-        "AVISO DE DESENVOLVIMENTO: As variáveis "
-        "DB_NAME, DB_USER, ou DB_PASSWORD não estão totalmente definidas no .env. "
-        "O banco de dados local pode não funcionar se não estiverem completas."
-    )
-
-DATABASES = {
-    'default': {
-        'ENGINE': DB_ENGINE_ENV,
-        'NAME': DB_NAME_ENV,
-        'USER': DB_USER_ENV,
-        'PASSWORD': DB_PASSWORD_ENV,
-        'HOST': DB_HOST_ENV,
-        'PORT': DB_PORT_ENV,
+if USE_SQLITE and not DEBUG:
+    # --- Configuração para SQLite3 (PythonAnywhere) ---
+    print("AVISO: Usando banco de dados SQLite3 para ambiente de produção limitado.")
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3', 
+        }
     }
-}
 
-if not DATABASES['default'].get('NAME'):
-    if not DEBUG:
-        raise ValueError("ERRO CRÍTICO: Configuração do banco de dados está incompleta.")
-    else:
-        print(
-            "AVISO DE DESENVOLVIMENTO CRÍTICO: A configuração do banco de dados 'default' está vazia. "
-            "Verifique seu .env para DB_NAME, DB_USER, DB_PASSWORD."
+else:
+    # --- Configuração para PostgreSQL (Desenvolvimento Local ou Produção Robusta) ---
+    DB_ENGINE_ENV = os.environ.get('DB_ENGINE', 'django.db.backends.postgresql')
+    DB_NAME_ENV = os.environ.get('DB_NAME')
+    DB_USER_ENV = os.environ.get('DB_USER')
+    DB_PASSWORD_ENV = os.environ.get('DB_PASSWORD')
+    DB_HOST_ENV = os.environ.get('DB_HOST', 'localhost')
+    DB_PORT_ENV = os.environ.get('DB_PORT', '5432')
+
+    # A lógica de verificação de DEBUG e variáveis de produção pode ser mantida ou ajustada
+    if not DEBUG and not all([DB_NAME_ENV, DB_USER_ENV, DB_PASSWORD_ENV, DB_HOST_ENV, DB_PORT_ENV]):
+        raise ValueError(
+            "ERRO CRÍTICO DE PRODUÇÃO: As variáveis de ambiente "
+            "DB_NAME, DB_USER, DB_PASSWORD, DB_HOST, DB_PORT não estão completamente definidas no .env."
         )
+    elif DEBUG and not all([DB_NAME_ENV, DB_USER_ENV, DB_PASSWORD_ENV]):
+        print(
+            "AVISO DE DESENVOLVIMENTO: As variáveis "
+            "DB_NAME, DB_USER, ou DB_PASSWORD não estão totalmente definidas no .env. "
+            "O banco de dados local pode não funcionar se não estiverem completas."
+        )
+
+    DATABASES = {
+        'default': {
+            'ENGINE': DB_ENGINE_ENV,
+            'NAME': DB_NAME_ENV,
+            'USER': DB_USER_ENV,
+            'PASSWORD': DB_PASSWORD_ENV,
+            'HOST': DB_HOST_ENV,
+            'PORT': DB_PORT_ENV,
+        }
+    }
+
+    if not DATABASES['default'].get('NAME'):
+        if not DEBUG:
+            raise ValueError("ERRO CRÍTICO: Configuração do banco de dados está incompleta.")
+        else:
+            print(
+                "AVISO DE DESENVOLVIMENTO CRÍTICO: A configuração do banco de dados 'default' está vazia. "
+                "Verifique seu .env para DB_NAME, DB_USER, DB_PASSWORD."
+            )
 
         
 # --- Configurações de Aplicação ---
