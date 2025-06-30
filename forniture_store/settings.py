@@ -73,7 +73,7 @@ else:
 # --- Configuração do Banco de Dados ---
 USE_SQLITE = os.environ.get('DJANGO_USE_SQLITE', 'False').lower() in ('true', '1', 't')
 
-if USE_SQLITE and not DEBUG:
+if USE_SQLITE:
     # --- Configuração para SQLite3 (PythonAnywhere) ---
     print("AVISO: Usando banco de dados SQLite3 para ambiente de produção limitado.")
     DATABASES = {
