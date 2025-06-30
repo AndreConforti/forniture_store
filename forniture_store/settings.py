@@ -16,9 +16,21 @@ if os.path.exists(dotenv_path):
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # --- Configurações de Segurança e Debug ---
+# Carrega as variáveis de ambiente primeiro
 SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
 DEBUG_STRING = os.environ.get("DJANGO_DEBUG", "False")
 DEBUG = DEBUG_STRING.lower() in ("true", "1", "t")
+
+# Carrega variáveis do arquivo .env APENAS em modo DEBUG
+if DEBUG:
+    dotenv_path = os.path.join(BASE_DIR, ".env")
+    if os.path.exists(dotenv_path):
+        print("AVISO: Carregando variáveis do arquivo .env para desenvolvimento.")
+        load_dotenv(dotenv_path)
+        # Recarrega as variáveis após o .env, para dar prioridade a ele em DEBUG
+        SECRET_KEY = os.environ.get("DJANGO_SECRET_KEY")
+        DEBUG_STRING = os.environ.get("DJANGO_DEBUG", "False")
+        DEBUG = DEBUG_STRING.lower() in ("true", "1", "t")
 
 ## --- Configurações específicas de HTTPS ---
 USE_HTTPS_SETTINGS = os.environ.get("DJANGO_USE_HTTPS_SETTINGS", "False").lower() == 'true'
