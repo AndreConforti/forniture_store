@@ -70,3 +70,22 @@ O sistema está sendo construído modularmente, permitindo uma implementação e
 
 ---
 
+## 🗺️ Roadmap de Desenvolvimento (Próximos Passos)
+
+O desenvolvimento continuará com a implementação dos seguintes módulos:
+
+-   [ ] **Módulo de Produtos:** Cadastro detalhado de produtos, com categorias, subcategorias e informações relevantes.
+-   [ ] **Módulo de Estoque:** Controle de entrada e saída de produtos, inventário e gestão de níveis de estoque.
+-   [ ] **Módulo de Pedidos:** Registro e acompanhamento do ciclo de vida dos pedidos de venda.
+-   [ ] **Módulo Financeiro:**
+    -   [ ] **Contas a Pagar:** Gestão de obrigações financeiras a fornecedores e outras despesas.
+    -   [ ] **Contas a Receber:** Controle de pagamentos de clientes e faturamento.
+-   [ ] **Melhorias na UI/UX:** Aprimorar a interface e a experiência do usuário com base no feedback.
+-   [ ] **Ampliação dos Relatórios:** Desenvolver relatórios mais complexos cruzando dados de diferentes módulos.
+
+---
+
+## 📜 Licença
+
+Este projeto está licenciado sob a Licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
+
