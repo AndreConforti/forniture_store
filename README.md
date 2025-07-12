@@ -1,68 +1,72 @@
-# Forniture Store - Sistema de Gestão Integrada
+# Forniture Store - Sistema de Gestão Integrada (ERP/CRM)
 
-## Visão Geral do Projeto
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Python](https://img.shields.io/badge/Python-3.12+-yellow.svg)
+![Django](https://img.shields.io/badge/Django-5.2+-green.svg)
+![PostgreSQL](https://img.shields.io/badge/Database-PostgreSQL-blue.svg)
 
-Este projeto é um sistema de gestão integrado desenvolvido para atender às necessidades de uma loja física de móveis e decoração, "Forniture Store". O objetivo principal é centralizar e otimizar as operações diárias, desde o cadastro e relacionamento com clientes e fornecedores até o controle de estoque, gerenciamento de pedidos e acompanhamento financeiro.
+## 📖 Visão Geral do Projeto
 
-O sistema está sendo construído modularmente, permitindo a implementação e o deploy faseado das funcionalidades.
+Este projeto é um sistema de gestão integrado (ERP/CRM) desenvolvido em Django para atender às necessidades de uma loja de móveis e decoração, a **"Forniture Store"**. O objetivo principal é centralizar e otimizar as operações diárias, desde o cadastro e relacionamento com clientes e fornecedores até a geração de relatórios gerenciais.
 
-## Módulos Planejados
+O sistema está sendo construído modularmente, permitindo uma implementação e um deploy faseado das funcionalidades. Atualmente, os módulos de **Clientes, Fornecedores e Relatórios** estão implementados e funcionais.
 
-O sistema completo abrangerá os seguintes módulos:
+**[➡️ Link para a Demonstração Ao Vivo]** (Será adicionado o link aqui quando for finalizado o deploy)
 
-1.  **Clientes:** Gerenciamento completo do cadastro de clientes (Pessoa Física e Jurídica), incluindo dados de contato, informações fiscais e endereços.
-2.  **Fornecedores:** Cadastro e gestão de fornecedores.
-3.  **Produtos:** Cadastro detalhado de produtos, com categorias, subcategorias e informações relevantes.
-4.  **Estoque:** Controle de entrada e saída de produtos, inventário e gestão de níveis de estoque.
-5.  **Pedidos:** Registro e acompanhamento do ciclo de vida dos pedidos de venda.
-6.  **Contas a Pagar:** Gestão de obrigações financeiras a fornecedores e outras despesas.
-7.  **Contas a Receber:** Controle de pagamentos de clientes e faturamento.
-8.  **Relatórios:** Geração de relatórios gerenciais e operacionais sobre todos os módulos.
+---
 
-## Status Atual do Projeto
+## ✨ Funcionalidades Implementadas
 
-Atualmente, o módulo de **Clientes** está implementado e pronto para ser utilizado e testado. Este README detalha as funcionalidades disponíveis neste módulo. Os demais módulos estão em fase de planejamento ou desenvolvimento inicial.
+### 👤 **Gestão de Clientes e Fornecedores**
+- **CRUD Completo:** Criação, Leitura, Atualização e Exclusão de registros para Clientes e Fornecedores.
+- **Tipos de Entidade:** Suporte para Pessoas Físicas (PF) e Pessoas Jurídicas (PJ), com formulários que se adaptam dinamicamente aos campos necessários.
+- **Validação de Documentos:** Validação em tempo real para CPF e CNPJ (utilizando `validate-docbr`), garantindo a integridade dos dados fiscais.
+- **Busca e Filtragem:** Ferramentas de busca e filtros avançados nas listagens para encontrar registros por nome, documento, e-mail e tipo.
 
-## Módulo Implementado: Clientes
+### 🔌 **Integração com APIs Externas**
+- **Busca por CNPJ:** Preenchimento automático de Razão Social, Nome Fantasia e Endereço ao digitar um CNPJ válido para um cliente ou fornecedor, consultando uma API externa.
+- **Busca por CEP:** Preenchimento automático de Logradouro, Bairro, Cidade e UF ao informar um CEP, agilizando o cadastro de endereços para qualquer entidade.
+- **Cache de API:** Os resultados das consultas de CEP são armazenados em cache para otimizar o desempenho e reduzir requisições repetidas.
 
-O módulo de Clientes permite o gerenciamento completo do cadastro de clientes da loja.
+### 📊 **Módulo de Relatórios Avançado**
+- **Relatórios de Clientes e Fornecedores:** Telas dedicadas para gerar relatórios detalhados.
+- **Filtros Dinâmicos:** Formulários permitem a combinação de múltiplos filtros (nome, tipo, status, cidade, estado, etc.) para extrair dados precisos.
+- **Exportação Multiformato:** Geração de relatórios nos formatos **Excel (.xlsx)**, **CSV (.csv)** e **JSON (.json)**.
+- **Processamento com Pandas:** Utilização da biblioteca `pandas` para manipulação eficiente dos dados e geração dos arquivos, garantindo performance e flexibilidade.
 
-### Funcionalidades Principais do Módulo de Clientes:
+### 🏛️ **Arquitetura e Design**
+- **Modelo de Endereço Genérico:** Um modelo `Address` centralizado com `GenericForeignKey` permite que qualquer outra entidade do sistema (Clientes, Fornecedores, etc.) possa ter um endereço sem duplicação de código.
+- **Código Modular:** O projeto é organizado em apps Django com responsabilidades bem definidas (`addresses`, `customers`, `suppliers`, `reports`, `docs`), facilitando a manutenção e a escalabilidade.
+- **Serviços Desacoplados:** A lógica de comunicação com APIs externas está isolada em `core/services`, separando as preocupações e mantendo os modelos limpos.
 
-*   **Cadastro de Clientes (Pessoa Física e Jurídica):** Registro de novos clientes com informações como nome/razão social, apelido/nome fantasia, CPF/CNPJ, telefone, e-mail, profissão, interesses, status VIP e observações.
-*   **Gerenciamento de Endereços:** Cada cliente pode ter um endereço associado. O sistema integra-se com APIs externas para buscar dados de endereço automaticamente a partir do CEP.
-*   **Busca Inteligente de Dados (CNPJ/CEP):**
-    *   Ao cadastrar ou editar um cliente Pessoa Jurídica (CNPJ), o sistema pode buscar automaticamente a Razão Social, Nome Fantasia e dados básicos do endereço através de APIs públicas.
-    *   Para qualquer tipo de cliente, os campos de endereço podem ser preenchidos automaticamente informando apenas o CEP, consultando APIs de endereços.
-*   **Validação Automática:** Validação do formato e dígitos verificadores de CPF e CNPJ de acordo com o tipo de cliente selecionado. Limpeza automática de campos como telefone e CEP (removendo caracteres não numéricos).
-*   **Visualização Detalhada:** Página dedicada para exibir todas as informações de um cliente, incluindo seus dados básicos, endereço formatado e informações adicionais.
-*   **Listagem de Clientes:** Visualização paginada dos clientes cadastrados e ativos.
-*   **Busca e Filtro:** Funcionalidades de busca por nome, CPF/CNPJ ou e-mail, e filtro por tipo de cliente (Pessoa Física / Jurídica) na página de listagem.
-*   **Usabilidade:** Formulário de cadastro/edição organizado em abas para facilitar a navegação entre as diferentes seções de informação do cliente.
+### 📚 **Documentação Integrada**
+- Um app `docs` dedicado serve como um manual do usuário dentro do próprio sistema, explicando passo a passo como utilizar cada funcionalidade implementada.
 
-### Tecnologias Utilizadas no Módulo de Clientes:
+---
 
-*   **Backend:** Python, Django, Django REST Framework (para endpoints de API de busca), `requests` (para consumo de APIs externas), `validate_docbr` (para validação de documentos).
-*   **Database:** Utiliza o ORM do Django.
-*   **Frontend:** HTML, CSS, Bootstrap 5 (para o layout e componentes), JavaScript (com jQuery para a lógica de busca de dados via API), Máscaras de entrada (para CEP e CPF/CNPJ no frontend).
-*   **Estruturas Django Adicionais:** `GenericRelation` e `ContentType` para associar o endereço de forma flexível, `cached_property` para otimizar o acesso a dados formatados, Views baseadas em Classe (`ListView`, `DetailView`, `CreateView`, `UpdateView`).
+## 📸 Screenshots
 
-## Configuração e Execução (WIP)
+| Tela de Listagem de Clientes | Formulário de Cadastro (com busca de CNPJ) |
+| :-------------------------: | :--------------------------: |
+| *Adicione um screenshot aqui* | *Adicione um screenshot aqui* |
 
-1.  Clone o repositório.
-2.  Crie um ambiente virtual (`python -m venv venv`).
-3.  Ative o ambiente virtual (`source venv/bin/activate` no Linux/macOS, `venv\Scripts\activate` no Windows).
-4.  Instale as dependências (`pip install -r requirements.txt`). *(Você precisará criar este arquivo com base nas libs usadas)*.
-5.  Configure o banco de dados em `settings.py`.
-6.  Execute as migrações (`python manage.py migrate`).
-7.  Crie um superusuário para acessar a área administrativa (`python manage.py createsuperuser`).
-8.  Execute o servidor de desenvolvimento (`python manage.py runserver`).
-9.  Acesse a aplicação no navegador (geralmente em `http://127.0.0.1:8000/`).
+| Formulário de Relatório de Clientes | Documentação Integrada |
+| :-------------------------: | :--------------------------: |
+| *Adicione um screenshot aqui* | *Adicione um screenshot aqui* |
 
-## Próximos Passos
+*(**Dica:** Substitua o texto "Adicione um screenshot aqui" pela imagem real. Você pode arrastar e soltar a imagem na caixa de edição do GitHub para fazer o upload e obter o link.)*
 
-*   Finalizar a configuração do ambiente para deploy da versão atual.
-*   Continuar a implementação dos módulos restantes (Fornecedores, Produtos, Estoque, Pedidos, Financeiro).
-*   Desenvolver relatórios mais complexos.
-*   Melhorar a interface do usuário e a experiência do usuário.
-*   Desenvolver uma documentação técnica e de usuário mais completa.
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- **Backend:** Python, Django
+- **Frontend:** HTML, CSS, JavaScript, Bootstrap 5
+- **Banco de Dados:** PostgreSQL
+- **Manipulação de Dados:** Pandas
+- **Validação de Documentos:** validate-docbr
+- **Servidor (Produção):** Gunicorn, WhiteNoise
+- **Variáveis de Ambiente:** python-dotenv
+
+---
+
